@@ -3,23 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.5",
     "@types/react": "^16.9.35",
+    "@types/react-autosuggest": "^9.3.14",
     "@types/react-dom": "^16.9.8",
+    "@types/styled-system": "^5.1.10",
+    "axios": "^0.19.2",
+    "ramda": "^0.27.0",
     "react": "^16.13.1",
+    "react-autosuggest": "^10.0.2",
     "react-dom": "^16.13.1",
+    "react-focus-lock": "^2.4.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "styled-components": "^5.1.1",
+    "styled-system": "^5.1.5",
     "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,6 +51,16 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "@babel/core": "^7.11.1",
+    "@storybook/addon-actions": "^6.0.12",
+    "@storybook/addon-essentials": "^6.0.12",
+    "@storybook/addon-links": "^6.0.12",
+    "@storybook/react": "^6.0.12",
+    "@types/ramda": "^0.27.14",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/styled-components": "^5.1.2",
+    "babel-loader": "^8.1.0",
+    "prettier": "^2.0.5",
+    "react-is": "^16.13.1"
   }
 }
