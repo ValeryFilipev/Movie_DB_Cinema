@@ -1,9 +1,9 @@
-import styled, { css, StyledProps } from "styled-components";
-import { color, space, typography } from "styled-system";
+import styled, { css, StyledProps } from 'styled-components';
+import { color, space, typography } from 'styled-system';
 
-import { getColor, getFontSize, getSpace } from "../../../helpers/theme";
+import { getColor, getFontSize, getSpace } from '../../../helpers/theme';
 
-import { CommonProps } from "./types";
+import { CommonProps } from './types';
 
 export const BaseStyle = css`
   color: ${getColor('copy.primary')};
@@ -12,10 +12,10 @@ export const BaseStyle = css`
 `;
 
 export enum TextType {
-  DISABLED = "disabled",
-  ERROR = "error",
-  INTERACTIVE = "interactive",
-  LIGHT = "light",
+  DISABLED = 'disabled',
+  ERROR = 'error',
+  INTERACTIVE = 'interactive',
+  LIGHT = 'light'
 }
 
 interface TextProps {

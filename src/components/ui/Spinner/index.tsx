@@ -1,7 +1,7 @@
-import React from "react";
-import styled, { keyframes, StyledProps } from "styled-components";
+import React from 'react';
+import styled, { keyframes, StyledProps } from 'styled-components';
 
-import { getColor } from "../../../helpers/theme";
+import { getColor } from '../../../helpers/theme';
 
 interface SpinnerProps {
   size?: number | string;
@@ -19,24 +19,21 @@ const RingAnimation = keyframes`
 `;
 
 const getSpinnerColor = (props: StyledProps<SpinnerProps>) => {
-  return (
-    (props.color && getColor(props.color)(props)) ||
-    getColor("common.white")(props)
-  );
+  return (props.color && getColor(props.color)(props)) || getColor('common.white')(props);
 };
 
 const SpinnerContainer = styled.div<SpinnerProps>`
   display: inline-block;
   position: relative;
-  width: ${(props) => props.size || "64px"};
-  height: ${(props) => props.size || "64px"};
+  width: ${(props) => props.size || '64px'};
+  height: ${(props) => props.size || '64px'};
   div {
     box-sizing: border-box;
     display: block;
     position: absolute;
-    width: ${(props) => props.size || "64px"};
-    height: ${(props) => props.size || "64px"};
-    border: ${(props) => props.thickness || "8px"} solid;
+    width: ${(props) => props.size || '64px'};
+    height: ${(props) => props.size || '64px'};
+    border: ${(props) => props.thickness || '8px'} solid;
     border-radius: 50%;
     animation: ${RingAnimation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: ${getSpinnerColor} transparent transparent transparent;
@@ -55,7 +52,7 @@ const SpinnerContainer = styled.div<SpinnerProps>`
 const Spinner: React.FunctionComponent<SpinnerProps> = ({
   size,
   color,
-  thickness,
+  thickness
 }) => (
   <SpinnerContainer size={size} color={color} thickness={thickness}>
     <div />

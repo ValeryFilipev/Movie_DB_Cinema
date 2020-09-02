@@ -1,21 +1,20 @@
-import { DefaultTheme, StyledProps } from "styled-components";
-import { path } from "ramda";
+import { DefaultTheme, StyledProps } from 'styled-components';
+import { path } from 'ramda';
 
 const convertShadowToLight = (shadow: string | undefined) =>
   shadow && shadow.replace(/0,\s?0,\s?0/g, '255, 255, 255');
 
 export const getBreakpoint = (name: string) => (
   props: StyledProps<{ theme: DefaultTheme }>
-): string | undefined => path(["theme", "breakpoints", name], props);
+): string | undefined => path(['theme', 'breakpoints', name], props);
 
 export const getColor = (colorName: string) => (
   props: StyledProps<{ theme: DefaultTheme }>
-): string | undefined =>
-  path(["theme", "colors", ...colorName.split(".")], props);
+): string | undefined => path(['theme', 'colors', ...colorName.split('.')], props);
 
 export const getFontSize = (fontSize: number) => (
   props: StyledProps<{ theme: DefaultTheme }>
-): string | undefined => path(["theme", "fontSizes", fontSize], props);
+): string | undefined => path(['theme', 'fontSizes', fontSize], props);
 
 export const getSpace = (index: number) => (
   props: StyledProps<{ theme: DefaultTheme }>

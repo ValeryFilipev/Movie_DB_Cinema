@@ -6,8 +6,8 @@ import {
   LayoutProps,
   PositionProps,
   ShadowProps,
-  SpaceProps,
-} from "styled-system";
+  SpaceProps
+} from 'styled-system';
 
 export type BoxProps = BorderProps &
   ColorProps &

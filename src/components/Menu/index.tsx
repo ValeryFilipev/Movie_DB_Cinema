@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 
-import Button from "../ui/Elements/Buttons";
+import Button from "../ui/Elements/Button";
 import {
   getBreakpoint,
   getColor,

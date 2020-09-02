@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 import styled, {
   keyframes,
   css,
   StyledProps,
   FlattenInterpolation,
   StyledComponent,
-  DefaultTheme,
-} from "styled-components";
-import { space, layout, SpaceProps, LayoutProps } from "styled-system";
+  DefaultTheme
+} from 'styled-components';
+import { space, layout, SpaceProps, LayoutProps } from 'styled-system';
 
-import { getColor, getShadow } from "../../../../helpers/theme";
-import ButtonBase, { ButtonBaseProps } from "./ButtonBase";
-import { ButtonType, ButtonVariant } from "./types";
-import Spinner from "../../Spinner";
+import { getColor, getShadow } from '../../../../helpers/theme';
+import ButtonBase, { ButtonBaseProps } from './ButtonBase';
+import { ButtonType, ButtonVariant } from './types';
+import Spinner from '../../Spinner';
 
 interface CustomProps {
   variant?: ButtonVariant;
@@ -40,7 +40,7 @@ const Ripple = css`
   position: relative;
   overflow: hidden;
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -68,7 +68,7 @@ const getBlockVariantStyle = (
 ): FlattenInterpolation<StyledButtonProps> | string => {
   const { variant } = props;
   if (!props.variant) {
-    return "";
+    return '';
   }
 
   return css<StyledButtonProps>`
@@ -92,15 +92,15 @@ const getBlockVariantStyle = (
 export const BlockButton = styled.button<StyledButtonProps>`
   ${ButtonBase};
   ${Ripple};
-  color: ${getColor("copy.primary")};
-  background-color: ${getColor("grey.300")};
+  color: ${getColor('copy.primary')};
+  background-color: ${getColor('grey.300')};
   box-shadow: ${getShadow(2)};
   &:hover:enabled {
-    background-color: ${getColor("grey.A100")};
+    background-color: ${getColor('grey.A100')};
     box-shadow: ${getShadow(4)};
     @media (hover: none) {
       box-shadow: ${getShadow(2)};
-      background-color: ${getColor("grey.300")};
+      background-color: ${getColor('grey.300')};
     }
   }
 
@@ -109,9 +109,9 @@ export const BlockButton = styled.button<StyledButtonProps>`
   }
 
   &:disabled {
-    color: ${getColor("action.disabled")};
+    color: ${getColor('action.disabled')};
     box-shadow: ${getShadow(0)};
-    background-color: ${getColor("action.disabledBackground")};
+    background-color: ${getColor('action.disabledBackground')};
   }
   ${getBlockVariantStyle};
   ${space};
@@ -123,7 +123,7 @@ const getOutlineVariantStyle = (
 ): FlattenInterpolation<StyledButtonProps> | string => {
   const { variant } = props;
   if (!props.variant) {
-    return "";
+    return '';
   }
 
   return css<StyledButtonProps>`
@@ -141,17 +141,17 @@ const getOutlineVariantStyle = (
 export const OutlinedButton = styled.button<StyledButtonProps>`
   ${ButtonBase};
   ${Ripple};
-  border: 1px solid ${getColor("black")}3A; /* 0.23 opacity */
+  border: 1px solid ${getColor('black')}3A; /* 0.23 opacity */
   background-color: transparent;
   &:hover:enabled {
-    background-color: ${getColor("black")}14; /* 0.08 opacity */
+    background-color: ${getColor('black')}14; /* 0.08 opacity */
     @media (hover: none) {
       background-color: transparent;
     }
   }
   &:disabled {
-    color: ${getColor("action.disabled")};
-    border: 1px solid ${getColor("action.disabled")};
+    color: ${getColor('action.disabled')};
+    border: 1px solid ${getColor('action.disabled')};
   }
   ${getOutlineVariantStyle};
   ${space};
@@ -171,24 +171,22 @@ const SpinnerContainer = styled.div`
 `;
 
 const Button: React.FunctionComponent<ButtonProps> = ({
-  buttonType = "block",
+  buttonType = 'block',
   loading,
   children,
   ...rest
 }) => {
-  const Component: StyledComponent<"button", DefaultTheme, ButtonProps> =
-    buttonType === "block" ? BlockButton : OutlinedButton;
+  const Component: StyledComponent<'button', DefaultTheme, ButtonProps> =
+    buttonType === 'block' ? BlockButton : OutlinedButton;
 
   const spinnerColor =
-    buttonType === "outlined"
-      ? `${rest.variant}.main`
-      : `${rest.variant}.contrastText`;
+    buttonType === 'outlined' ? `${rest.variant}.main` : `${rest.variant}.contrastText`;
 
   return (
     <Component {...rest}>
       {loading && (
         <SpinnerContainer>
-          <Spinner size="24px" thickness="4px" color={spinnerColor} />
+          <Spinner size='24px' thickness='4px' color={spinnerColor} />
         </SpinnerContainer>
       )}
       {children}
