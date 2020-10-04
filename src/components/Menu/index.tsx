@@ -1,19 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faList } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faList } from '@fortawesome/free-solid-svg-icons';
 
-import Button from "../ui/Elements/Button";
-import {
-  getBreakpoint,
-  getColor,
-  getFontSize,
-  getShadow,
-  getSpace,
-} from "../../helpers/theme";
-import { MenuProps, MenuOwnProps } from "../Header/types";
+import Button from '../ui/Elements/Button';
+import { getBreakpoint, getColor, getFontSize, getShadow, getSpace } from '../../helpers/theme';
+import { MenuProps, MenuOwnProps } from '../Header/types';
 
 const StyledMenu = styled.div<MenuOwnProps>`
   position: fixed;
@@ -24,7 +18,7 @@ const StyledMenu = styled.div<MenuOwnProps>`
   display: flex;
   flex-direction: column;
   /* 105% to hide the shadow as well */
-  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-105%)")};
+  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-105%)')};
   box-shadow: ${getShadow(9)};
   background: rgba(255, 255, 255, 0.9);
   text-align: left;
@@ -33,21 +27,21 @@ const StyledMenu = styled.div<MenuOwnProps>`
   a {
     outline: none;
     font-size: ${getFontSize(2)};
-    border-bottom: 1px solid ${getColor("copy.primary")};
+    border-bottom: 1px solid ${getColor('copy.primary')};
     text-transform: uppercase;
     padding: ${getSpace(3)};
     font-weight: bold;
-    color: ${getColor("copy.primary")};
+    color: ${getColor('copy.primary')};
     text-decoration: none;
     transition: color 0.3s linear;
     @media (hover: hover) {
       &:hover {
-        color: ${getColor("primary.main")};
+        color: ${getColor('primary.main')};
       }
     }
   }
 
-  @media (min-width: ${getBreakpoint("md")}) {
+  @media (min-width: ${getBreakpoint('md')}) {
     position: relative;
     flex-direction: row;
     transform: none;
@@ -64,47 +58,37 @@ const StyledMenu = styled.div<MenuOwnProps>`
   }
 `;
 
-const Menu: React.FunctionComponent<MenuProps> = ({
-  open,
-  isAuthenticated,
-  logout,
-  ...props
-}) => {
+const Menu: React.FunctionComponent<MenuProps> = ({ open, isAuthenticated, logout, ...props }) => {
   const tabIndex = open ? -1 : 0;
 
   return (
     <StyledMenu open={open} aria-hidden={!open} {...props}>
-      <Link to="/" tabIndex={tabIndex}>
-        <FontAwesomeIcon icon={faList} size="lg" />
+      <Link to='/' tabIndex={tabIndex}>
+        <FontAwesomeIcon icon={faList} size='lg' />
         &nbsp;&nbsp;Movies
       </Link>
       <a
-        href="https://github.com/ValeryFilipev"
-        rel="noopener noreferrer"
+        href='https://github.com/ValeryFilipev'
+        rel='noopener noreferrer'
         tabIndex={tabIndex}
-        target="_blank"
+        target='_blank'
       >
-        <FontAwesomeIcon icon={faGithub} size="lg" />
+        <FontAwesomeIcon icon={faGithub} size='lg' />
       </a>
       {isAuthenticated ? (
         <>
-          <Link to="/watch-list" tabIndex={tabIndex}>
-            <Button variant="secondary" buttonType="outlined">
+          <Link to='/watch-list' tabIndex={tabIndex}>
+            <Button variant='secondary' buttonType='outlined'>
               My list
             </Button>
           </Link>
-          <Button
-            variant="secondary"
-            buttonType="outlined"
-            onClick={logout}
-            data-cy="logout"
-          >
+          <Button variant='secondary' buttonType='outlined' onClick={logout} data-cy='logout'>
             Logout
           </Button>
         </>
       ) : (
-        <Link to="/authenticate" tabIndex={tabIndex}>
-          <Button variant="secondary" buttonType="outlined">
+        <Link to='/authenticate' tabIndex={tabIndex}>
+          <Button variant='secondary' buttonType='outlined'>
             Login
           </Button>
         </Link>
