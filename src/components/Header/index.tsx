@@ -11,3 +11,4 @@ import {
   getSpace
 } from '../../helpers/theme';
 import Menu from '../../containers/Menu';
+import SearchBox from '../SearchBox';
