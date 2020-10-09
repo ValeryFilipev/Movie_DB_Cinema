@@ -12,7 +12,7 @@ import Autosuggestion, {
 import { searchMovies } from '../../api/movies';
 import { Movie } from '../Movies/types';
 import '../../styles/autosuggest.css';
-import renderSuggestionWithGenres from '../renderSuggestion';
+import renderSuggestionWithGenres from '../renderSuggestion/renderSuggestion';
 import StyledAutosuggest from '../renderSuggestion';
 import { SearchBoxProps } from '../Header/types';
 
@@ -29,9 +29,9 @@ class SearchBox extends React.PureComponent<SearchBoxProps, State> {
     suggestions: []
   };
 
-  componentDidMount(): void {
-    this.props.fetchGenres();
-  }
+  // componentDidMount(): void {
+  //   this.props.fetchGenres();
+  // }
 
   onSuggestionFetchRequested: SuggestionsFetchRequested = async ({ value }) => {
     const { data } = await searchMovies(value);
