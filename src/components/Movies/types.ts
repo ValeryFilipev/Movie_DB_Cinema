@@ -11,3 +11,14 @@ export interface Genre {
   id: number;
   name: string;
 }
+
+export interface WatchListItem {
+  id: number;
+  title: string;
+  posterPath: string;
+}
+
+export interface MoviesState {
+  fetchingGenres: false;
+  genres: Record<number, string>;
+}

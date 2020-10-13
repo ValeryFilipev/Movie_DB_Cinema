@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Box from '../ui/Layout/Box';
 import { getBreakpoint, getColor, getFontSize, getSpace } from '../../helpers/theme';
 import Menu from '../../containers/Menu';
-import SearchBox from '../SearchBox';
+import SearchBox from '../../containers/SearchBox';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 import Burger from '../ui/Burger';
 
@@ -64,12 +64,6 @@ const Header: React.FunctionComponent<NavbarProps> = ({ open, setOpen }) => {
 
   useOnClickOutside(node, () => setOpen(false));
 
-  const logout = () => {
-    console.log('logout');
-  };
-
-  const genresArr: any = [];
-
   return (
     <Nav data-cy='navbar'>
       <Box display='flex' flexShrink={0} width='auto'>
@@ -79,12 +73,12 @@ const Header: React.FunctionComponent<NavbarProps> = ({ open, setOpen }) => {
           </Icon>
         </Link>
         <LogoCopy>React Movies</LogoCopy>
-        <SearchBox fetchGenres={genresArr} genres={[]} onSuggestionSelected={genresArr} />
+        <SearchBox />
       </Box>
       <Box display='flex' flexDirection='row-reverse' ref={node}>
         <FocusLock disabled={!open}>
           <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
-          <Menu open={open} id={menuId} isAuthenticated={false} logout={logout} />
+          <Menu open={open} id={menuId} />
         </FocusLock>
       </Box>
     </Nav>

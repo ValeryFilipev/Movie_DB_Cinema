@@ -1,5 +1,5 @@
-import React from "react";
-import { Genre } from "../Movies/types";
+import React from 'react';
+import { Genre } from '../Movies/types';
 
 export type MovieStatus =
   | 'Rumored'

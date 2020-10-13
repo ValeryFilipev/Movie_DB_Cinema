@@ -29,9 +29,9 @@ class SearchBox extends React.PureComponent<SearchBoxProps, State> {
     suggestions: []
   };
 
-  // componentDidMount(): void {
-  //   this.props.fetchGenres();
-  // }
+  componentDidMount(): void {
+    this.props.fetchGenres();
+  }
 
   onSuggestionFetchRequested: SuggestionsFetchRequested = async ({ value }) => {
     const { data } = await searchMovies(value);
