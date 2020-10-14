@@ -1,5 +1,5 @@
 {
-  "name": "imdb-frontend",
+  "name": "movie-db-cinema",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -46,9 +46,7 @@
     "lint:fix": "eslint './src/**/*.{ts,tsx}'",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "cy:run": "cypress run",
-    "test:e2e": "start-server-and-test start http://localhost:3000 cy:run"
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"

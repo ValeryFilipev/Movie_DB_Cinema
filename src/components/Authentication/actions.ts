@@ -1,4 +1,3 @@
-import { push } from 'connected-react-router';
 import { action } from 'typesafe-actions';
 import { ThunkResult } from 'StoreTypes';
 

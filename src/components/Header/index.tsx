@@ -60,6 +60,7 @@ const Header: React.FunctionComponent<NavbarProps> = ({ open, setOpen }) => {
         setOpen(false);
       }
     });
+    // eslint-disable-next-line
   }, []);
 
   useOnClickOutside(node, () => setOpen(false));

@@ -1,6 +1,6 @@
 import { RootAction } from '../../store/rootAction';
 import { authenticationActionTypes } from './actions';
-import { AuthenticationState, User } from './types';
+import { AuthenticationState } from './types';
 
 export const initialState: AuthenticationState = {
   loggingIn: false,
