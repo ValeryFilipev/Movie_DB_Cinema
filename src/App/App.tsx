@@ -6,6 +6,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 
+import AppRouter from './AppRouter';
 import defaultTheme from '../defaultTheme';
 import GlobalStyles from '../globalStyles';
 import Header from '../components/Header';
@@ -32,7 +33,7 @@ const App: React.FC = () => {
             <Header open={open} setOpen={setOpen} />
             <ReactNotification />
             <Main>
-
+              <AppRouter />
             </Main>
           </ConnectedRouter>
         </ThemeProvider>
