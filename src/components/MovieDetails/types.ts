@@ -1,4 +1,3 @@
-import React from 'react';
 import { Genre } from '../Movies/types';
 
 export type MovieStatus =
@@ -29,4 +28,11 @@ export interface MovieInfo {
   tagline?: string;
   title?: string;
   voteAverage?: number;
+}
+
+export interface MovieDetailsState {
+  fetchingMovie: boolean;
+  movieInfo?: MovieInfo;
+  actors?: Actor[];
+  images?: string[];
 }

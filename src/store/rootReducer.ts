@@ -6,11 +6,17 @@ import { RootState } from 'StoreTypes';
 import authenticationReducer, {
   initialState as authInitial
 } from '../components/Authentication/reducer';
-import moviesReducer, { initialState as moviesInitial } from '../components/Movies/reducer';
+import moviesReducer, {
+  initialState as moviesInitial
+} from '../components/Movies/reducer';
+import movieDetailsReducer, {
+  initialState as detailsInitial
+} from '../components/MovieDetails/reducer';
 
 const rootReducer = (history: History) =>
   combineReducers({
     authentication: authenticationReducer,
+    movieDetails: movieDetailsReducer,
     movies: moviesReducer,
     router: connectRouter(history)
   });
@@ -18,6 +24,7 @@ const rootReducer = (history: History) =>
 export const initialState: RootState = {
   movies: moviesInitial,
   authentication: authInitial,
+  movieDetails: detailsInitial,
   router: {
     location: {
       state: {},

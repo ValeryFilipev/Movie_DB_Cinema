@@ -1,13 +1,18 @@
 import { action } from 'typesafe-actions';
 import { Movie } from './types';
 import { ThunkResult } from 'StoreTypes';
-import { Genre } from './types';
-import { getGenres } from '../../api/movies';
+import { Genre, Filter } from './types';
+import { getGenres, getMovies } from '../../api/movies';
 
 export enum moviesActionTypes {
   FETCH_GENRES_REQUEST = 'movies/FETCH_GENRES_REQUEST',
   FETCH_GENRES_SUCCESS = 'movies/FETCH_GENRES_SUCCESS',
-  FETCH_GENRES_FAIL = 'movies/FETCH_GENRES_FAIL'
+  FETCH_GENRES_FAIL = 'movies/FETCH_GENRES_FAIL',
+  FETCH_MOVIES_REQUEST = 'movies/FETCH_MOVIES_REQUEST',
+  FETCH_MOVIES_SUCCESS = 'movies/FETCH_MOVIES_SUCCESS',
+  FETCH_MOVIES_FAIL = 'movies/FETCH_MOVIES_FAIL',
+  SET_CURRENT_FILTER = 'movies/SET_CURRENT_FILTER',
+  SET_CURRENT_PAGE = 'movies/SET_CURRENT_PAGE'
 }
 
 export interface FetchMoviesSuccessPayload {
@@ -19,11 +24,43 @@ export interface FetchMoviesSuccessPayload {
 
 export type FetchGenresSuccessPayload = { genres: Genre[] };
 
+export interface FetchMoviesPayload {
+  page: number;
+  filter?: Filter;
+}
+
 export const moviesActions = {
   fetchGenresRequest: () => action(moviesActionTypes.FETCH_GENRES_REQUEST),
   fetchGenresSuccess: (payload: FetchGenresSuccessPayload) =>
     action(moviesActionTypes.FETCH_GENRES_SUCCESS, payload),
-  fetchGenresFail: (error: string) => action(moviesActionTypes.FETCH_GENRES_FAIL, error)
+  fetchGenresFail: (error: string) => action(moviesActionTypes.FETCH_GENRES_FAIL, error),
+  fetchMoviesRequest: () => action(moviesActionTypes.FETCH_MOVIES_REQUEST),
+  fetchMoviesSuccess: (payload: FetchMoviesSuccessPayload) =>
+    action(moviesActionTypes.FETCH_MOVIES_SUCCESS, payload),
+  fetchMoviesFail: (error: string) => action(moviesActionTypes.FETCH_MOVIES_FAIL, error),
+  setCurrentFilter: (filter: Filter) => action(moviesActionTypes.SET_CURRENT_FILTER, filter),
+  setCurrentPage: (page: number) => action(moviesActionTypes.SET_CURRENT_PAGE, page)
+};
+
+export const fetchMovies = (): ThunkResult<void> => async (dispatch, getState) => {
+  try {
+    const state = getState();
+
+    if (state.movies.fetchingMovies) {
+      return;
+    }
+
+    dispatch(moviesActions.fetchMoviesRequest());
+
+    const page = state.movies.currentPage;
+    const filter = state.movies.currentFilter;
+    const { data } = await getMovies({ filter, page });
+
+    dispatch(moviesActions.fetchMoviesSuccess(data));
+  } catch (e) {
+    dispatch(moviesActions.fetchMoviesFail("Could not get movies"));
+    console.log(e);
+  }
 };
 
 export const fetchGenres = (): ThunkResult<void> => async (dispatch, getState) => {
@@ -42,4 +79,10 @@ export const fetchGenres = (): ThunkResult<void> => async (dispatch, getState) =
     dispatch(moviesActions.fetchGenresFail("Couldn't get genres"));
     console.log(e);
   }
+};
+
+export const onFilterChange = (filter: Filter): ThunkResult<void> => async (dispatch, getState) => {
+  dispatch(moviesActions.setCurrentFilter(filter));
+  dispatch(moviesActions.setCurrentPage(1));
+  await fetchMovies()(dispatch, getState, undefined);
 };

@@ -7,6 +7,7 @@ import { RootAction, RootState } from 'StoreTypes';
 
 import { checkUser } from '../components/Authentication/actions';
 import { getUserId } from '../components/Authentication/selectors';
+import HomePage from '../containers/HomePage';
 import NotFound from '../NotFound';
 
 interface ProtectedRouteProps extends RouteProps {
@@ -51,7 +52,8 @@ const mapStateToProps = (state: RootState) => ({
   isAuthenticated: !!getUserId(state)
 });
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<RootState, undefined, RootAction>) =>
-  bindActionCreators({ checkUser }, dispatch);
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<RootState, undefined, RootAction>
+) => bindActionCreators({ checkUser }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);
