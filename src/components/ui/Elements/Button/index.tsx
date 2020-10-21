@@ -12,7 +12,7 @@ import { space, layout, SpaceProps, LayoutProps } from 'styled-system';
 import { getColor, getShadow } from '../../../../helpers/theme';
 import ButtonBase, { ButtonBaseProps } from './ButtonBase';
 import { ButtonType, ButtonVariant } from './types';
-import Spinner from '../../Spinner';
+import Spinner from '../../PageSpinner/Spinner';
 
 interface CustomProps {
   variant?: ButtonVariant;

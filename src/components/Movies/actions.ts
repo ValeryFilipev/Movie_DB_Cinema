@@ -86,3 +86,11 @@ export const onFilterChange = (filter: Filter): ThunkResult<void> => async (disp
   dispatch(moviesActions.setCurrentPage(1));
   await fetchMovies()(dispatch, getState, undefined);
 };
+
+export const onPageChange = ({ selected }: { selected: number }): ThunkResult<void> => async (
+  dispatch,
+  getState
+) => {
+  dispatch(moviesActions.setCurrentPage(selected + 1));
+  await fetchMovies()(dispatch, getState, undefined);
+};

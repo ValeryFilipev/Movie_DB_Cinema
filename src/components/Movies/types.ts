@@ -60,3 +60,9 @@ export interface MovieFilterStateProps {
 }
 
 export type MovieFilterProps = MovieFilterDispatchProps & MovieFilterStateProps;
+
+export interface MoviesDispatchProps {
+  onPageChange({ selected }: { selected: number }): void;
+}
+
+export type MoviesProps = MoviesDispatchProps & MoviesState;

@@ -22,3 +22,39 @@ declare module 'StoreTypes' {
   export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
   export type StateSelector<T> = (state: RootState) => T;
 }
+
+declare module 'react-paginate' {
+  import React from 'react';
+  export interface ReactPaginateProps {
+    pageCount: number;
+    pageRangeDisplayed: number;
+    marginPagesDisplayed: number;
+    previousLabel?: JSX.Element | string;
+    nextLabel?: JSX.Element | string;
+    breakLabel?: JSX.Element | string;
+    breakClassName?: string;
+    breakLinkClassName?: string;
+    onPageChange?: ({ selected: number }) => void;
+    initialPage?: number;
+    forcePage?: number;
+    disableInitialCallback?: boolean;
+    containerClassName?: string;
+    subContainerClassName?: string;
+    pageClassName?: string;
+    pageLinkClassName?: string;
+    activeClassName?: string;
+    activeLinkClassName?: string;
+    previousClassName?: string;
+    nextClassName?: string;
+    previousLinkClassName?: string;
+    nextLinkClassName?: string;
+    disabledClassName?: string;
+    hrefBuilder?: (pageIndex: number) => string;
+    extraAriaContext?: string;
+    ariaLabelBuilder?: (pageIndex: number) => string;
+  }
+
+  class ReactPaginate extends React.Component<ReactPaginateProps, {}> {}
+
+  export default ReactPaginate;
+}
