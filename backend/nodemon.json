@@ -1,0 +1,8 @@
+{
+  "env": {
+    "MONGO_USER": "Valery",
+    "MONGO_PASSWORD": "dMq8iJMGrSRQungZ",
+    "MONGO_DB": "moviedb-auth",
+    "JWT_KEY": "supersecret_dont_share"
+  }
+}
