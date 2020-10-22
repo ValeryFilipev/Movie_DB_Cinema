@@ -28,7 +28,7 @@ const MovieListCard: React.FunctionComponent<Props> = ({ movie, genres }) => (
           {movie.title}
         </Text>
         <Text small color='common.white'>
-          {movie.genreIds.map((id) => genres[id]).join(', ')}
+          {movie.genreIds?.map((id) => genres[id]).join(', ')}
         </Text>
       </Box>
     </Link>
