@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Box from '../../components/ui/Layout/Box';
-import Spinner from '../../components/ui/Spinner';
+import Spinner from '../../components/ui/PageSpinner/Spinner';
 
 // eslint-disable-next-line no-undef
 storiesOf('Spinner', module)

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes, StyledProps } from 'styled-components';
 
-import { getColor } from '../../../helpers/theme';
+import { getColor } from '../../../../helpers/theme';
 
 interface SpinnerProps {
   size?: number | string;

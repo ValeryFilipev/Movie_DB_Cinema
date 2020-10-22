@@ -30,3 +30,14 @@ export const getShadow = (index: number, isLight = false) => (
 
   return convertShadowToLight(shadow);
 };
+
+export const getBreakpointWidth = (name: string) => (
+  props: StyledProps<{ theme: DefaultTheme }>
+): number => {
+  const breakPoint = path<string>(['theme', 'breakpoints', name], props);
+  if (breakPoint) {
+    return parseInt(breakPoint);
+  }
+
+  return 0;
+};
