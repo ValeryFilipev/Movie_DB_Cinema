@@ -1,3 +1,4 @@
+import { FormikHelpers } from 'formik';
 import { WatchListItem } from '../Movies/types';
 
 export interface User {
@@ -11,3 +12,23 @@ export interface AuthenticationState {
   loggingIn: boolean;
   signingUp: boolean;
 }
+
+export interface LoginFormValues {
+  username: string;
+  password: string;
+}
+
+export type LoginOnSubmit = (
+  values: LoginFormValues,
+  formikHelpers: FormikHelpers<LoginFormValues>
+) => void;
+
+export interface LoginDispatchProps {
+  onSubmit: LoginOnSubmit;
+}
+
+export interface LoginOwnProps {
+  goToSignup(): void;
+}
+
+export type LoginFormProps = LoginDispatchProps & LoginOwnProps;
