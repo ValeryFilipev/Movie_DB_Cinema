@@ -7,6 +7,7 @@ import { RootAction, RootState } from 'StoreTypes';
 
 import { checkUser } from '../components/Authentication/actions';
 import { getUserId } from '../components/Authentication/selectors';
+import AuthenticationPage from '../components/Authentication';
 import HomePage from '../containers/HomePage';
 import NotFound from '../NotFound';
 
@@ -43,6 +44,12 @@ const AppRouter: React.FC<AppRouterProps> = ({
   return (
     <Switch>
       <Route exact path='/' component={HomePage} />
+      <PrivateRoute
+        component={AuthenticationPage}
+        isAllowed={!isAuthenticated}
+        path='/authenticate'
+        redirectTo='/'
+      />
       <NotFound />
     </Switch>
   );
