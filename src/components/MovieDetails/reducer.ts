@@ -20,6 +20,12 @@ export default function(state = initialState, action: RootAction): MovieDetailsS
         ...action.payload,
         fetchingMovie: false
       };
+    case movieDetailsActionTypes.FETCH_MOVIE_DETAILS_FAIL:
+      return {
+        fetchingMovie: false
+      };
+    case movieDetailsActionTypes.RESET:
+      return initialState;
     default:
       return state;
   }

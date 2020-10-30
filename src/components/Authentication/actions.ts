@@ -5,6 +5,7 @@ import { ThunkResult } from 'StoreTypes';
 
 import { apiLogin, apiLogout, getUser, apiSignup } from '../../api/user';
 import { User, LoginFormValues, SignupFormValues } from './types';
+import { WatchListItem } from '../Movies/types';
 
 export enum authenticationActionTypes {
   LOGIN_REQUEST = 'authentication/LOGIN_REQUEST',
@@ -13,7 +14,8 @@ export enum authenticationActionTypes {
   SIGNUP_REQUEST = 'authentication/SIGNUP_REQUEST',
   SIGNUP_SUCCESS = 'authentication/SIGNUP_SUCCESS',
   SIGNUP_FAIL = 'authentication/SIGNUP_FAIL',
-  CLEAR = 'authentication/CLEAR'
+  CLEAR = 'authentication/CLEAR',
+  SET_WATCH_LIST = 'authentication/SET_WATCH_LIST'
 }
 
 export interface SignupPayload {
@@ -39,12 +41,16 @@ export const authenticationActions = {
   loginRequest: () => action(authenticationActionTypes.LOGIN_REQUEST),
   loginSuccess: (payload: AuthSuccessPayload) =>
     action(authenticationActionTypes.LOGIN_SUCCESS, payload),
-  loginFail: (payload: AuthFailPayload) => action(authenticationActionTypes.LOGIN_FAIL, payload),
+  loginFail: (payload: AuthFailPayload) =>
+    action(authenticationActionTypes.LOGIN_FAIL, payload),
   signupRequest: () => action(authenticationActionTypes.SIGNUP_REQUEST),
   signupSuccess: (payload: AuthSuccessPayload) =>
     action(authenticationActionTypes.SIGNUP_SUCCESS, payload),
-  signupFail: (payload: AuthFailPayload) => action(authenticationActionTypes.SIGNUP_FAIL, payload),
-  clear: () => action(authenticationActionTypes.CLEAR)
+  signupFail: (payload: AuthFailPayload) =>
+    action(authenticationActionTypes.SIGNUP_FAIL, payload),
+  clear: () => action(authenticationActionTypes.CLEAR),
+  setWatchList: (watchList: WatchListItem[]) =>
+    action(authenticationActionTypes.SET_WATCH_LIST, watchList)
 };
 
 export const login = (
@@ -83,7 +89,9 @@ export const signup = (
       formikHelpers.setFieldError('password', 'Please check your credentials');
     }
     formikHelpers.setSubmitting(false);
-    dispatch(authenticationActions.signupFail({ error: e.response.statusText }));
+    dispatch(
+      authenticationActions.signupFail({ error: e.response.statusText })
+    );
   }
 };
 

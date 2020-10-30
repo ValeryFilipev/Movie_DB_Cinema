@@ -1,3 +1,4 @@
+import React from 'react';
 import { Genre } from '../Movies/types';
 
 export type MovieStatus =
@@ -30,9 +31,29 @@ export interface MovieInfo {
   voteAverage?: number;
 }
 
+export interface Actor {
+  character: string;
+  id: number;
+  name: string;
+  profilePath: string;
+}
+
 export interface MovieDetailsState {
   fetchingMovie: boolean;
   movieInfo?: MovieInfo;
   actors?: Actor[];
   images?: string[];
 }
+
+export interface MovieDetailsDispatchProps {
+  fetchMovieDetails(id: number): void;
+  addToWatchList(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+  removeFromWatchList(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+}
+
+export interface MovieDetailsStateProps {
+  movieDetails: MovieDetailsState;
+  isInWatchList: boolean;
+}
+
+export type MovieDetailsProps = MovieDetailsDispatchProps & MovieDetailsStateProps;

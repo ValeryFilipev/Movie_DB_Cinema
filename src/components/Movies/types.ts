@@ -1,4 +1,5 @@
 import React from 'react';
+import { MovieInfo } from '../MovieDetails/types';
 
 export interface Movie {
   backdropPath?: string;
@@ -14,29 +15,6 @@ export interface Genre {
   name: string;
 }
 
-export interface WatchListItem {
-  id: number;
-  title: string;
-  posterPath: string;
-}
-
-export interface MoviesState {
-  fetchingGenres: false;
-  genres: Record<number, string>;
-  fetchingMovies: boolean;
-  currentPage: number;
-  currentFilter: Filter;
-  error: string | null;
-  movies: Movie[];
-  totalPages: number;
-}
-
-export interface HomeDispatchProps {
-  fetchMovies(): void;
-}
-
-export type HomeProps = HomeDispatchProps;
-
 export type Filter = 'popular' | 'nowPlaying' | 'topRated' | 'upcoming';
 
 const filterLabels: Record<Filter, string> = {
@@ -51,6 +29,35 @@ export const filters = Object.keys(filterLabels).map((key) => ({
   label: filterLabels[key as Filter]
 }));
 
+export interface MoviePage {
+  movies: Movie[];
+  totalPages: number;
+}
+
+export interface MoviesState {
+  fetchingGenres: boolean;
+  genres: Record<number, string>;
+  currentPage: number;
+  fetchingMovies: boolean;
+  currentFilter: Filter;
+  movies: Movie[];
+  totalPages: number;
+  error: string | null;
+  watchList: MovieInfo[];
+}
+
+export interface MoviesDispatchProps {
+  onPageChange({ selected }: { selected: number }): void;
+}
+
+export interface HomeDispatchProps {
+  fetchMovies(): void;
+}
+
+export type HomeProps = HomeDispatchProps;
+
+export type MoviesProps = MoviesDispatchProps & MoviesState;
+
 export interface MovieFilterDispatchProps {
   onClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
 }
@@ -61,8 +68,18 @@ export interface MovieFilterStateProps {
 
 export type MovieFilterProps = MovieFilterDispatchProps & MovieFilterStateProps;
 
-export interface MoviesDispatchProps {
-  onPageChange({ selected }: { selected: number }): void;
+export interface WatchListDispatchProps {
+  removeFromWatchList(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
 }
 
-export type MoviesProps = MoviesDispatchProps & MoviesState;
+export interface WatchListItem {
+  id: number;
+  title: string;
+  posterPath: string;
+}
+
+export interface WatchListStateProps {
+  watchList: WatchListItem[];
+}
+
+export type WatchListProps = WatchListDispatchProps & WatchListStateProps;

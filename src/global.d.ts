@@ -58,3 +58,14 @@ declare module 'react-paginate' {
 
   export default ReactPaginate;
 }
+
+declare module 'react-intl-formatted-duration';
+declare module 'react-notifications-component' {
+  import React from 'react';
+  type Store = {
+    addNotification(notification: any): void;
+  };
+
+  export const store: Store;
+  export default class ReactNotification extends React.Component<{}, {}> {}
+}
