@@ -6,8 +6,8 @@ import { RootAction, RootState } from 'StoreTypes';
 import MovieFilter from '../components/MovieFilter';
 import {
   Filter,
-  MovieFilterDispatchProps,
-  MovieFilterStateProps
+  MovieFilterStateProps,
+  MovieFilterDispatchProps
 } from '../components/Movies/types';
 import { onFilterChange } from '../components/Movies/actions';
 import { fetchMovieDetails } from '../components/MovieDetails/actions';
@@ -26,7 +26,12 @@ const mapDispatchToProps = (
   }
 });
 
-export default connect<MovieFilterStateProps, MovieFilterDispatchProps, {}, RootState>(
+export default connect<
+  MovieFilterStateProps,
+  MovieFilterDispatchProps,
+  {},
+  RootState
+>(
   mapStateToProps,
   mapDispatchToProps
 )(MovieFilter);

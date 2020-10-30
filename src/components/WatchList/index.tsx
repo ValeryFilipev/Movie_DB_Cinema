@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Page from '../ui/Layout/Page';
-import { Grid, GridItem } from '../ui/Grid';
+import { Grid, GridItem } from '../Grid';
 import { WatchListProps } from '../Movies/types';
-import WatchListCard from '../WatchListCard';
+import WatchListCard from '../Cards/WatchListCard';
 
 const WatchList: React.FunctionComponent<WatchListProps> = (props) => (
   <Page backgroundImage='http://www.dominioncinema.co.uk/wp-content/uploads/2016/11/Dominion-511-of-21.jpg'>

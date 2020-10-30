@@ -17,9 +17,15 @@ const mapStateToProps = (state: RootState): WatchListStateProps => ({
 
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<RootState, undefined, RootAction>
-): WatchListDispatchProps => bindActionCreators({ removeFromWatchList }, dispatch);
+): WatchListDispatchProps =>
+  bindActionCreators({ removeFromWatchList }, dispatch);
 
-export default connect<WatchListStateProps, WatchListDispatchProps, {}, RootState>(
+export default connect<
+  WatchListStateProps,
+  WatchListDispatchProps,
+  {},
+  RootState
+>(
   mapStateToProps,
   mapDispatchToProps
 )(WatchList);

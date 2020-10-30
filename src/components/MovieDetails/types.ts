@@ -1,5 +1,5 @@
-import React from 'react';
 import { Genre } from '../Movies/types';
+import React from 'react';
 
 export type MovieStatus =
   | 'Rumored'
@@ -8,13 +8,6 @@ export type MovieStatus =
   | 'Post Production'
   | 'Released'
   | 'Canceled';
-
-export interface Actor {
-  character: string;
-  id: number;
-  name: string;
-  profilePath: string;
-}
 
 export interface MovieInfo {
   id: number;

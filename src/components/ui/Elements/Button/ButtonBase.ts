@@ -1,7 +1,7 @@
 import React from 'react';
 import { css, StyledProps } from 'styled-components';
 
-import { getSpace, getFontSize } from "../../../../helpers/theme";
+import { getFontSize, getSpace } from '../../../../helpers/theme';
 
 export type ButtonBaseProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 

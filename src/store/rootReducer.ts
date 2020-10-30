@@ -3,15 +3,9 @@ import { History } from 'history';
 import { combineReducers } from 'redux';
 import { RootState } from 'StoreTypes';
 
-import authenticationReducer, {
-  initialState as authInitial
-} from '../components/Authentication/reducer';
-import moviesReducer, {
-  initialState as moviesInitial
-} from '../components/Movies/reducer';
-import movieDetailsReducer, {
-  initialState as detailsInitial
-} from '../components/MovieDetails/reducer';
+import authenticationReducer, { initialState as authInitial } from '../components/Authentication/reducer';
+import movieDetailsReducer, { initialState as detailsInitial } from '../components/MovieDetails/reducer';
+import moviesReducer, { initialState as moviesInitial } from '../components/Movies/reducer';
 
 const rootReducer = (history: History) =>
   combineReducers({

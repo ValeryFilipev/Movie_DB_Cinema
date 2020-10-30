@@ -1,2 +1,2 @@
-export type ButtonVariant = "primary" | "secondary";
-export type ButtonType = "block" | "outlined";
+export type ButtonVariant = 'primary' | 'secondary';
+export type ButtonType = 'block' | 'outlined';

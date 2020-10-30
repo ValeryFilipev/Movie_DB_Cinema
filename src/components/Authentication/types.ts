@@ -1,6 +1,27 @@
 import { FormikHelpers } from 'formik';
 import { WatchListItem } from '../Movies/types';
 
+export interface LoginFormValues {
+  username: string;
+  password: string;
+}
+
+export interface SignupFormValues {
+  username: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export type LoginOnSubmit = (
+  values: LoginFormValues,
+  formikHelpers: FormikHelpers<LoginFormValues>
+) => void;
+
+export type SignupOnSubmit = (
+  values: SignupFormValues,
+  formikHelpers: FormikHelpers<SignupFormValues>
+) => void;
+
 export interface User {
   id: string;
   username: string;
@@ -13,43 +34,22 @@ export interface AuthenticationState {
   signingUp: boolean;
 }
 
-export interface SignupFormValues {
-  username: string;
-  email: string;
-  password: string;
-}
-
-export interface LoginFormValues {
-  username: string;
-  password: string;
-}
-
-export type SignupOnSubmit = (
-  values: SignupFormValues,
-  formikHelpers: FormikHelpers<SignupFormValues>
-) => void;
-
-export type LoginOnSubmit = (
-  values: LoginFormValues,
-  formikHelpers: FormikHelpers<LoginFormValues>
-) => void;
-
-export interface SignupDispatchProps {
-  onSubmit: SignupOnSubmit;
-}
-
 export interface LoginDispatchProps {
   onSubmit: LoginOnSubmit;
-}
-
-export interface SignupOwnProps {
-  goToLogin(): void;
 }
 
 export interface LoginOwnProps {
   goToSignup(): void;
 }
 
-export type SignupFormProps = SignupDispatchProps & SignupOwnProps;
-
 export type LoginFormProps = LoginDispatchProps & LoginOwnProps;
+
+export interface SignupDispatchProps {
+  onSubmit: SignupOnSubmit;
+}
+
+export interface SignupOwnProps {
+  goToLogin(): void;
+}
+
+export type SignupFormProps = SignupDispatchProps & SignupOwnProps;

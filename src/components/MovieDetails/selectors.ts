@@ -1,10 +1,10 @@
-import { StateSelector } from 'StoreTypes';
 import { prop, pathOr, propEq } from 'ramda';
-import { Genre } from '../Movies/types';
 import { createSelector } from 'reselect';
+import { RootState, StateSelector } from 'StoreTypes';
 
 import { getWatchList } from '../Movies/selectors';
-import { MovieInfo, MovieDetailsState } from './types';
+import { MovieDetailsState, MovieInfo } from './types';
+import { Genre } from '../Movies/types';
 
 export const getMovieId: StateSelector<number | null> = pathOr(null, [
   'movieDetails',
@@ -24,11 +24,6 @@ export const getIsInWatchList: StateSelector<boolean> = createSelector(
   }
 );
 
-export const getMovieDetails: StateSelector<MovieDetailsState> = prop(
-  'movieDetails'
-);
+export const getMovieDetails: StateSelector<MovieDetailsState> = prop('movieDetails');
 
-export const getGenres: StateSelector<Genre[]> = pathOr(
-  [],
-  ['movies', 'genres']
-);
+export const getGenres: StateSelector<Genre[]> = pathOr([], ['movies', 'genres']);

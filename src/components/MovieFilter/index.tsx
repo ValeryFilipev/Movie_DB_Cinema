@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Box from '../ui/Layout/Box';
-import Button from '../ui/Elements/Button';
+import Button from '../ui/Elements/Button/Buttons';
 import {
   getBreakpoint,
   getColor,
@@ -53,7 +53,7 @@ const ButtonGroup = styled(Box)`
 
 const MovieFilter: React.FunctionComponent<MovieFilterProps> = (props) => (
   <ButtonGroup data-cy='movieFilter'>
-    {filters?.map(({ name, label }) => (
+    {filters.map(({ name, label }) => (
       <Button
         className={props.filter === name ? 'active' : ''}
         key={name}

@@ -1,11 +1,11 @@
-import { axiosUser as axios } from '../utils/axios';
-import { User } from '../components/Authentication/types';
 import {
   LoginPayload,
   AuthSuccessPayload,
   SignupPayload
 } from '../components/Authentication/actions';
+import { User } from '../components/Authentication/types';
 import { WatchListItem } from '../components/Movies/types';
+import { axiosUser as axios } from '../utils/axios';
 
 export const apiLogin = (payload: LoginPayload) =>
   axios.post<AuthSuccessPayload>('/auth/login', payload);

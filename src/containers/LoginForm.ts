@@ -4,7 +4,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { RootAction, RootState } from 'StoreTypes';
 
 import { login } from '../components/Authentication/actions';
-import LoginForm from '../components/Authentication/LoginForm';
+import LoginForm from '../components/LoginForm';
 import {
   LoginDispatchProps,
   LoginOwnProps
@@ -14,4 +14,7 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<RootState, undefined, RootAction>
 ): LoginDispatchProps => bindActionCreators({ onSubmit: login }, dispatch);
 
-export default connect<{}, LoginDispatchProps, LoginOwnProps>(null, mapDispatchToProps)(LoginForm);
+export default connect<{}, LoginDispatchProps, LoginOwnProps>(
+  null,
+  mapDispatchToProps
+)(LoginForm);

@@ -9,8 +9,8 @@ import Page from '../ui/Layout/Page';
 import { H2 } from '../ui/Typography/Heading';
 import { MovieDetailsProps } from './types';
 import Actors from '../Actors';
-import SkeletonOverview from '../Skeleton/Overview';
-import MovieOverview from '../MovieOverview';
+import MovieOverview from './MovieOverview';
+import OverviewSkeleton from '../Skeleton/OverviewSkeleton';
 
 const MovieDetails: React.FunctionComponent<MovieDetailsProps &
   RouteComponentProps<{ id: string }>> = ({
@@ -27,7 +27,7 @@ const MovieDetails: React.FunctionComponent<MovieDetailsProps &
 
   const { movieInfo, actors, images, fetchingMovie } = movieDetails;
   if (!movieInfo || fetchingMovie) {
-    return SkeletonOverview;
+    return OverviewSkeleton;
   }
 
   return (

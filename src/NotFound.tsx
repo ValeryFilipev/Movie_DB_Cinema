@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { Text } from './components/ui/Typography/Text';
-import Button from './components/ui/Elements/Button';
-import PageBackgroundImage from './components/ui/PageBackgroundImage';
+import Button from './components/ui/Elements/Button/Buttons';
+import PageBackgroundImage from './styled/PageBackgroundImage';
 import Box from './components/ui/Layout/Box';
 
 const NotFoundContent = styled.div`

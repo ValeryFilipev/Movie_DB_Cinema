@@ -1,11 +1,11 @@
-import { action } from 'typesafe-actions';
-import { FormikHelpers } from 'formik';
 import { push } from 'connected-react-router';
+import { FormikHelpers } from 'formik';
+import { action } from 'typesafe-actions';
 import { ThunkResult } from 'StoreTypes';
 
-import { apiLogin, apiLogout, getUser, apiSignup } from '../../api/user';
-import { User, LoginFormValues, SignupFormValues } from './types';
+import { getUser, apiLogin, apiSignup, apiLogout } from '../../api/user';
 import { WatchListItem } from '../Movies/types';
+import { LoginFormValues, SignupFormValues, User } from './types';
 
 export enum authenticationActionTypes {
   LOGIN_REQUEST = 'authentication/LOGIN_REQUEST',
@@ -18,15 +18,15 @@ export enum authenticationActionTypes {
   SET_WATCH_LIST = 'authentication/SET_WATCH_LIST'
 }
 
-export interface SignupPayload {
-  username: string;
-  email: string;
-  password: string;
-}
-
 export interface LoginPayload {
   username: string;
   password: string;
+}
+
+export interface SignupPayload {
+  username: string;
+  password: string;
+  confirmPassword: string;
 }
 
 export interface AuthSuccessPayload {
@@ -41,13 +41,11 @@ export const authenticationActions = {
   loginRequest: () => action(authenticationActionTypes.LOGIN_REQUEST),
   loginSuccess: (payload: AuthSuccessPayload) =>
     action(authenticationActionTypes.LOGIN_SUCCESS, payload),
-  loginFail: (payload: AuthFailPayload) =>
-    action(authenticationActionTypes.LOGIN_FAIL, payload),
+  loginFail: (payload: AuthFailPayload) => action(authenticationActionTypes.LOGIN_FAIL, payload),
   signupRequest: () => action(authenticationActionTypes.SIGNUP_REQUEST),
   signupSuccess: (payload: AuthSuccessPayload) =>
     action(authenticationActionTypes.SIGNUP_SUCCESS, payload),
-  signupFail: (payload: AuthFailPayload) =>
-    action(authenticationActionTypes.SIGNUP_FAIL, payload),
+  signupFail: (payload: AuthFailPayload) => action(authenticationActionTypes.SIGNUP_FAIL, payload),
   clear: () => action(authenticationActionTypes.CLEAR),
   setWatchList: (watchList: WatchListItem[]) =>
     action(authenticationActionTypes.SET_WATCH_LIST, watchList)
@@ -71,6 +69,15 @@ export const login = (
   }
 };
 
+export const checkUser = (): ThunkResult<void> => async (dispatch, _) => {
+  try {
+    const { data } = await getUser();
+    dispatch(authenticationActions.loginSuccess({ user: data }));
+  } catch (e) {
+    console.log(JSON.stringify(e));
+  }
+};
+
 export const signup = (
   values: SignupFormValues,
   formikHelpers: FormikHelpers<SignupFormValues>
@@ -86,12 +93,10 @@ export const signup = (
       formikHelpers.setFieldError('username', 'Username already in use');
     }
     if (status === 422) {
-      formikHelpers.setFieldError('password', 'Please check your credentials');
+      formikHelpers.setFieldError('confirmPassword', 'Please check your credentials');
     }
     formikHelpers.setSubmitting(false);
-    dispatch(
-      authenticationActions.signupFail({ error: e.response.statusText })
-    );
+    dispatch(authenticationActions.loginFail({ error: e.response.statusText }));
   }
 };
 
@@ -101,14 +106,5 @@ export const logout = (): ThunkResult<any> => async (dispatch, getState) => {
     dispatch(authenticationActions.clear());
   } catch (e) {
     //
-  }
-};
-
-export const checkUser = (): ThunkResult<void> => async (dispatch, _) => {
-  try {
-    const { data } = await getUser();
-    dispatch(authenticationActions.loginSuccess({ user: data }));
-  } catch (e) {
-    console.log(JSON.stringify(e));
   }
 };

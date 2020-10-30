@@ -25,7 +25,6 @@ const LazyLoadImage: React.FunctionComponent<Props> = ({
         src={imgSrc}
         style={{ display: loaded ? '' : 'none' }}
         onLoad={onLoad}
-        alt='LazyLoadImage'
       />
     </>
   );

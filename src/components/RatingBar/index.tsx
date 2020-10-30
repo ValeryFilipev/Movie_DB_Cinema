@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { getColor, getFontSize } from '../../helpers/theme';
 import Box from '../ui/Layout/Box';
+import { getColor, getFontSize } from '../../helpers/theme';
 
 const Svg = styled.svg`
   display: block;

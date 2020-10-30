@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Grid, GridItem } from '../ui/Grid';
+import { Grid, GridItem } from '../Grid';
 import { MoviesProps } from './types';
-import Pagination from '../Pagination';
-import PageSpinner from '../ui/PageSpinner';
+import Pagination from '../Pagination/Pagination';
 import MovieListCard from '../Cards/MovieListCard';
+import PageSpinner from '../ui/Spinner/PageSpinner';
 
 const Movies: React.FunctionComponent<MoviesProps> = (props) => {
   if (props.fetchingMovies) {

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import casing from 'casing';
 
 export const axiosMovies = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
@@ -13,3 +14,7 @@ export const axiosUser = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
   withCredentials: true
 });
+
+if (process.env.NODE_ENV !== 'test') {
+  axiosMovies.interceptors.response.use(casing.camelize);
+}

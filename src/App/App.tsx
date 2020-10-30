@@ -9,7 +9,7 @@ import 'react-notifications-component/dist/theme.css';
 import AppRouter from './AppRouter';
 import defaultTheme from '../defaultTheme';
 import GlobalStyles from '../globalStyles';
-import Header from '../components/Header';
+import Navbar from '../components/Navbar';
 import store, { history } from '../store/store';
 
 const Main = styled.main`
@@ -30,7 +30,7 @@ const App: React.FC = () => {
         <ThemeProvider theme={defaultTheme}>
           <GlobalStyles />
           <ConnectedRouter history={history}>
-            <Header open={open} setOpen={setOpen} />
+            <Navbar open={open} setOpen={setOpen} />
             <ReactNotification />
             <Main>
               <AppRouter />

@@ -2,7 +2,6 @@ import styled, { css, StyledProps } from 'styled-components';
 import { color, space, typography } from 'styled-system';
 
 import { getColor, getFontSize, getSpace } from '../../../helpers/theme';
-
 import { CommonProps } from './types';
 
 export const BaseStyle = css`
@@ -41,10 +40,12 @@ const getColorName = (props: TextProps): string => {
 export const Text = styled.p<StyledProps<TextProps & CommonProps>>`
   ${BaseStyle};
   color: ${(props) => getColor(getColorName(props))(props)};
-  font-size: ${(props) => (props.small ? getFontSize(1)(props) : getFontSize(2)(props))};
+  font-size: ${(props) =>
+    props.small ? getFontSize(1)(props) : getFontSize(2)(props)};
   font-weight: normal;
   margin-bottom: ${getSpace(3)};
-  cursor: ${(props) => (props.type === TextType.INTERACTIVE ? 'pointer' : 'default')};
+  cursor: ${(props) =>
+    props.type === TextType.INTERACTIVE ? 'pointer' : 'default'};
   ${space};
   ${typography};
   ${color};

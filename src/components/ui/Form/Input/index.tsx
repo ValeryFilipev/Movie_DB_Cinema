@@ -3,7 +3,7 @@ import { omit } from 'ramda';
 import { FieldProps } from 'formik';
 
 import Box from '../../Layout/Box';
-import { Input, InputProps } from '../../Elements/Input';
+import { Input, InputProps } from '../../Elements/Input/Input';
 
 const FormikInput: React.FunctionComponent<FieldProps<string | number> &
   InputProps> = (props) => {

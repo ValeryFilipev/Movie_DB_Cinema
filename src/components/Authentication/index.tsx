@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Page from '../ui/Layout/Page';
 import LoginForm from '../../containers/LoginForm';
-import SignupForm from '../../containers/SignUpForm';
+import SignupForm from '../../containers/SignupForm';
 
 export enum AuthMode {
   LOGIN = 'login',

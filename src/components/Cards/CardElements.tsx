@@ -3,8 +3,8 @@ import ContentLoader from 'react-content-loader';
 import styled, { keyframes } from 'styled-components';
 
 import Box from '../ui/Layout/Box';
-import { getColor, getShadow, getSpace } from '../../helpers/theme';
 import LazyLoadImage from '../ui/LazyLoadImage';
+import { getColor, getShadow, getSpace } from '../../helpers/theme';
 
 const fadeIn = keyframes`
   0% {

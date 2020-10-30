@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 
 import Page from '../ui/Layout/Page';
+import MoviesPage from '../../containers/MoviesPage';
 import { HomeProps } from '../Movies/types';
 import MovieFilter from '../../containers/MovieFilter';
-import MoviesPage from '../../containers/MoviesPage';
 
 const Home: React.FunctionComponent<HomeProps> = (props) => {
   useEffect(() => {
@@ -11,7 +11,7 @@ const Home: React.FunctionComponent<HomeProps> = (props) => {
   }, []);
 
   return (
-    <Page backgroundImage='http://www.vamm.com.mx/images/fondo3.png'>
+    <Page backgroundImage='http://www.dominioncinema.co.uk/wp-content/uploads/2016/11/Dominion-511-of-21.jpg'>
       <MovieFilter />
       <MoviesPage />
     </Page>

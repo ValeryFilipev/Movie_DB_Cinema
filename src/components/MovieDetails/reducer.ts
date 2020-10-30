@@ -7,7 +7,10 @@ export const initialState: MovieDetailsState = {
   fetchingMovie: false
 };
 
-export default function(state = initialState, action: RootAction): MovieDetailsState {
+export default function(
+  state = initialState,
+  action: RootAction
+): MovieDetailsState {
   switch (action.type) {
     case movieDetailsActionTypes.FETCH_MOVIE_DETAILS_REQUEST:
       return {
