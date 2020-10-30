@@ -9,6 +9,8 @@ import { checkUser } from '../components/Authentication/actions';
 import { getUserId } from '../components/Authentication/selectors';
 import AuthenticationPage from '../components/Authentication';
 import HomePage from '../containers/HomePage';
+import WatchList from '../containers/WatchList';
+import MovieDetails from '../containers/MovieDetails';
 import NotFound from '../NotFound';
 
 interface ProtectedRouteProps extends RouteProps {
@@ -44,6 +46,8 @@ const AppRouter: React.FC<AppRouterProps> = ({
   return (
     <Switch>
       <Route exact path='/' component={HomePage} />
+      <Route path='/movie/:id' component={MovieDetails} />
+      <PrivateRoute component={WatchList} isAllowed={isAuthenticated} path='/watch-list' />
       <PrivateRoute
         component={AuthenticationPage}
         isAllowed={!isAuthenticated}

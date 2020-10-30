@@ -1,6 +1,6 @@
 import { RootAction } from '../../store/rootAction';
 import { authenticationActionTypes } from './actions';
-import { AuthenticationState } from './types';
+import { AuthenticationState, User } from './types';
 
 export const initialState: AuthenticationState = {
   loggingIn: false,
@@ -25,6 +25,14 @@ export default function(state = initialState, action: RootAction): Authenticatio
       return {
         ...state,
         loggingIn: false
+      };
+    case authenticationActionTypes.SET_WATCH_LIST:
+      return {
+        ...state,
+        user: {
+          ...(state.user as User),
+          watchList: action.payload
+        }
       };
     case authenticationActionTypes.CLEAR:
       return initialState;

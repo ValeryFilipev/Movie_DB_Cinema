@@ -9,7 +9,9 @@ import { MovieDetailsState } from './types';
 
 export enum movieDetailsActionTypes {
   FETCH_MOVIE_DETAILS_REQUEST = 'movieDetails/FETCH_MOVIE_DETAILS_REQUEST',
-  FETCH_MOVIE_DETAILS_SUCCESS = 'movieDetails/FETCH_MOVIE_DETAILS_SUCCESS'
+  FETCH_MOVIE_DETAILS_SUCCESS = 'movieDetails/FETCH_MOVIE_DETAILS_SUCCESS',
+  FETCH_MOVIE_DETAILS_FAIL = 'movieDetails/FETCH_MOVIE_DETAILS_REQUEST',
+  RESET = 'movieDetails/RESET'
 }
 
 type FetchSuccessPayload = Required<Omit<MovieDetailsState, 'fetchingMovie'>>;
@@ -17,7 +19,9 @@ type FetchSuccessPayload = Required<Omit<MovieDetailsState, 'fetchingMovie'>>;
 export const movieDetailsActions = {
   fetchMovieDetailsRequest: () => action(movieDetailsActionTypes.FETCH_MOVIE_DETAILS_REQUEST),
   fetchMovieDetailsSuccess: (payload: FetchSuccessPayload) =>
-    action(movieDetailsActionTypes.FETCH_MOVIE_DETAILS_SUCCESS, payload)
+    action(movieDetailsActionTypes.FETCH_MOVIE_DETAILS_SUCCESS, payload),
+  loginFail: (error: string) => action(movieDetailsActionTypes.FETCH_MOVIE_DETAILS_FAIL, error),
+  reset: () => action(movieDetailsActionTypes.RESET)
 };
 
 export const fetchMovieDetails = (id: number): ThunkResult<void> => async (dispatch, getState) => {

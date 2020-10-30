@@ -3,14 +3,15 @@ import { moviesActionTypes } from './actions';
 import { MoviesState } from './types';
 
 export const initialState: MoviesState = {
-  fetchingGenres: false,
-  genres: {},
-  fetchingMovies: false,
   currentPage: 1,
+  fetchingMovies: false,
+  fetchingGenres: false,
   currentFilter: 'popular',
-  error: null,
   movies: [],
-  totalPages: 0
+  totalPages: 0,
+  error: null,
+  genres: {},
+  watchList: []
 };
 
 export default function(
