@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { FormattedDate, FormattedNumber } from 'react-intl';
 import FormattedDuration from 'react-intl-formatted-duration';
 
@@ -8,51 +7,13 @@ import { MOVIE_DB_IMAGE_URL } from '../../../api/movies';
 import Box from '../../ui/Layout/Box';
 import { H1, H3 } from '../../ui/Typography/Heading';
 import { Text } from '../../ui/Typography/Text';
-import { getBreakpoint, getColor } from '../../../helpers/theme';
 import RatingBar from '../../RatingBar';
 import Button from '../../ui/Elements/Button/Buttons';
-
-const OverviewGrid = styled.div`
-  width: 100%;
-  display: grid;
-  background-color: rgba(0, 0, 0, 0.5);
-  grid-template: 'info' 'backdrop' 'stats';
-
-  @media (min-width: ${getBreakpoint('sm')}) {
-    grid-template: 'backdrop info' 'stats stats';
-    grid-template-columns: 0.3fr 0.7fr;
-    grid-template-rows: 1fr auto;
-  }
-
-  @media (min-width: ${getBreakpoint('lg')}) {
-    grid-template: 'backdrop info' 'backdrop stats';
-    grid-template-columns: 0.3fr 0.7fr;
-    grid-template-rows: 1fr auto;
-  }
-`;
-
-const BackdropImage = styled.img`
-  width: 100%;
-  grid-area: backdrop;
-  vertical-align: middle;
-`;
-
-const Icon = styled.i`
-  color: ${getColor('grey.300')};
-  font-size: 24px;
-`;
-
-const StatWrapper: React.FunctionComponent = ({ children }) => (
-  <Box display='flex' width='auto' mb={{ _: 3, sm: 0 }}>
-    {children}
-  </Box>
-);
-
-const StatText: React.FunctionComponent = ({ children }) => (
-  <Text color='grey.300' ml={3} mb={0}>
-    {children}
-  </Text>
-);
+import OverviewGrid from '../../../styled/MovieOverview/OverviewGrid';
+import BackdropImage from '../../../styled/MovieOverview/BackdropImage';
+import Icon from '../../../styled/MovieOverview/Icon';
+import StatText from './Stat/Text';
+import StatWrapper from './Stat/Wrapper';
 
 interface Props {
   movieInfo: MovieInfo;
@@ -67,17 +28,9 @@ const MovieOverview: React.FunctionComponent<Props> = ({
   addToWatchList,
   removeFromWatchList
 }) => (
-  <OverviewGrid data-cy='movieOverview'>
-    <BackdropImage
-      src={`${MOVIE_DB_IMAGE_URL.medium}${movieInfo.posterPath}`}
-    />
-    <Box
-      bg='rgba(0, 0, 0, 0.5)'
-      gridArea='info'
-      px={4}
-      py={3}
-      position='relative'
-    >
+  <OverviewGrid>
+    <BackdropImage src={`${MOVIE_DB_IMAGE_URL.medium}${movieInfo.posterPath}`} />
+    <Box bg='rgba(0, 0, 0, 0.5)' gridArea='info' px={4} py={3} position='relative'>
       <H1 color='brandYellow'>{movieInfo.title}</H1>
       <H3 color='common.white'>{movieInfo.tagline}</H3>
       {isInWatchList ? (
@@ -90,28 +43,14 @@ const MovieOverview: React.FunctionComponent<Props> = ({
           Remove from watchlist
         </Button>
       ) : (
-        <Button
-          onClick={addToWatchList}
-          name={movieInfo.id.toString()}
-          variant='primary'
-          mb={3}
-          data-cy='addToWatchList'
-        >
+        <Button onClick={addToWatchList} name={movieInfo.id.toString()} variant='primary' mb={3}>
           Add to watch list
         </Button>
       )}
       <Text color='common.white'>{movieInfo.overview}</Text>
       <Box display='flex' flexWrap='wrap'>
         {movieInfo.genres.map((genre) => (
-          <Box
-            key={genre.id}
-            bg='brandYellow'
-            width='auto'
-            p={2}
-            mr={3}
-            mb={3}
-            borderRadius='4px'
-          >
+          <Box key={genre.id} bg='brandYellow' width='auto' p={2} mr={3} mb={3} borderRadius='4px'>
             <Text mb={0} color='common.white' fontWeight={5}>
               {genre.name}
             </Text>
@@ -149,10 +88,7 @@ const MovieOverview: React.FunctionComponent<Props> = ({
       <StatWrapper>
         <Icon className='material-icons'>timer</Icon>
         <StatText>
-          <FormattedDuration
-            seconds={movieInfo.runtime * 60}
-            format='{hours} {minutes}'
-          />
+          <FormattedDuration seconds={movieInfo.runtime * 60} format='{hours} {minutes}' />
         </StatText>
       </StatWrapper>
       <StatWrapper>

@@ -33,23 +33,16 @@ export const moviesActions = {
   fetchMoviesRequest: () => action(moviesActionTypes.FETCH_MOVIES_REQUEST),
   fetchMoviesSuccess: (payload: FetchMoviesSuccessPayload) =>
     action(moviesActionTypes.FETCH_MOVIES_SUCCESS, payload),
-  fetchMoviesFail: (error: string) =>
-    action(moviesActionTypes.FETCH_MOVIES_FAIL, error),
+  fetchMoviesFail: (error: string) => action(moviesActionTypes.FETCH_MOVIES_FAIL, error),
   fetchGenresRequest: () => action(moviesActionTypes.FETCH_GENRES_REQUEST),
   fetchGenresSuccess: (payload: FetchGenresSuccessPayload) =>
     action(moviesActionTypes.FETCH_GENRES_SUCCESS, payload),
-  fetchGenresFail: (error: string) =>
-    action(moviesActionTypes.FETCH_GENRES_FAIL, error),
-  setCurrentPage: (page: number) =>
-    action(moviesActionTypes.SET_CURRENT_PAGE, page),
-  setCurrentFilter: (filter: Filter) =>
-    action(moviesActionTypes.SET_CURRENT_FILTER, filter)
+  fetchGenresFail: (error: string) => action(moviesActionTypes.FETCH_GENRES_FAIL, error),
+  setCurrentPage: (page: number) => action(moviesActionTypes.SET_CURRENT_PAGE, page),
+  setCurrentFilter: (filter: Filter) => action(moviesActionTypes.SET_CURRENT_FILTER, filter)
 };
 
-export const fetchMovies = (): ThunkResult<void> => async (
-  dispatch,
-  getState
-) => {
+export const fetchMovies = (): ThunkResult<void> => async (dispatch, getState) => {
   try {
     const state = getState();
     if (state.movies.fetchingMovies) {
@@ -66,10 +59,7 @@ export const fetchMovies = (): ThunkResult<void> => async (
   }
 };
 
-export const fetchGenres = (): ThunkResult<void> => async (
-  dispatch,
-  getState
-) => {
+export const fetchGenres = (): ThunkResult<void> => async (dispatch, getState) => {
   try {
     const state = getState();
     const a = state.movies.genres;
@@ -85,19 +75,15 @@ export const fetchGenres = (): ThunkResult<void> => async (
   }
 };
 
-export const onPageChange = ({
-  selected
-}: {
-  selected: number;
-}): ThunkResult<void> => async (dispatch, getState) => {
+export const onPageChange = ({ selected }: { selected: number }): ThunkResult<void> => async (
+  dispatch,
+  getState
+) => {
   dispatch(moviesActions.setCurrentPage(selected + 1));
   await fetchMovies()(dispatch, getState, undefined);
 };
 
-export const onFilterChange = (filter: Filter): ThunkResult<void> => async (
-  dispatch,
-  getState
-) => {
+export const onFilterChange = (filter: Filter): ThunkResult<void> => async (dispatch, getState) => {
   dispatch(moviesActions.setCurrentFilter(filter));
   dispatch(moviesActions.setCurrentPage(1));
   await fetchMovies()(dispatch, getState, undefined);

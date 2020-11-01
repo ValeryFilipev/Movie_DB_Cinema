@@ -26,9 +26,7 @@ const renderSuggestionWithGenres = (
     return (
       <Box boxShadow={1} p={2}>
         <Text mb={1}>
-          <Span color='primary.main'>
-            {title.slice(matchStart, matchStart + query.length)}
-          </Span>
+          <Span color='primary.main'>{title.slice(matchStart, matchStart + query.length)}</Span>
           {title.slice(matchStart + query.length)}
         </Text>
         {movieGenres}

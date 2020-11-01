@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 
-import {
-  getBreakpoint,
-  getColor,
-  getFontSize,
-  getSpace
-} from '../../helpers/theme';
+import { getBreakpoint, getColor, getFontSize, getSpace } from '../../helpers/theme';
 
 const StylingContainer = styled.div`
   width: 100%;

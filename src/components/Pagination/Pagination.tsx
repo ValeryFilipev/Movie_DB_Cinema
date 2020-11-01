@@ -23,7 +23,6 @@ const Pagination: React.FunctionComponent<Props> = (props) => {
     window.addEventListener('resize', resizeListener);
 
     return (): void => {
-      console.log('Removing listener');
       window.removeEventListener('resize', resizeListener);
     };
   }, [props.theme]);

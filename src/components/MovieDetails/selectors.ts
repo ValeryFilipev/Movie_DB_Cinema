@@ -1,6 +1,6 @@
 import { prop, pathOr, propEq } from 'ramda';
 import { createSelector } from 'reselect';
-import { RootState, StateSelector } from 'StoreTypes';
+import { StateSelector } from 'StoreTypes';
 
 import { getWatchList } from '../Movies/selectors';
 import { MovieDetailsState, MovieInfo } from './types';

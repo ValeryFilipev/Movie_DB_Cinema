@@ -1,5 +1,5 @@
 import React from 'react';
-import BurgerIcon from './BurgerIcon';
+import BurgerIcon from '../../../styled/BurgerIcon';
 
 interface BurgerProps {
   open: boolean;

@@ -1,29 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import Box from '../../ui/Layout/Box';
-import { getColor, getShadow } from '../../../helpers/theme';
 import { Actor } from '../../MovieDetails/types';
 import { MOVIE_DB_IMAGE_URL } from '../../../api/movies';
 import { Text } from '../../ui/Typography/Text';
-
-const Container = styled(Box)`
-  background-color: ${getColor('common.black')};
-  border-radius: 4px;
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-  box-shadow: ${getShadow(5, true)};
-  @media (hover: hover) {
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-`;
-
-const ActorImage = styled.img`
-  width: 100%;
-  vertical-align: middle;
-`;
+import ActorImage from '../../../styled/ActorCard/ActorImage';
+import Container from '../../../styled/ActorCard/Container';
 
 const ActorCard: React.FunctionComponent<{ actor: Actor }> = ({ actor }) => (
   <Container>

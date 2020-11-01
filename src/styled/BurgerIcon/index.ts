@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { getColor, getBreakpoint } from '../../../../helpers/theme';
+import { getColor, getBreakpoint } from '../../helpers/theme';
 
 export interface BurgerIconProps {
   open: boolean;

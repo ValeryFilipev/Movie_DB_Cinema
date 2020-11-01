@@ -3,9 +3,7 @@ import styled, { StyledProps } from 'styled-components';
 import { space, SpaceProps } from 'styled-system';
 import { getBreakpoint, getSpace } from '../../helpers/theme';
 
-export const Grid = styled.div<
-  StyledProps<SpaceProps & React.HTMLAttributes<HTMLDivElement>>
->`
+const Grid = styled.div<StyledProps<SpaceProps & React.HTMLAttributes<HTMLDivElement>>>`
   width: 100%;
   max-width: 1140px;
   margin: 0 auto;
@@ -25,7 +23,4 @@ export const Grid = styled.div<
   ${space};
 `;
 
-export const GridItem = styled.div`
-  background-color: transparent;
-  border-radius: 4px;
-`;
+export default Grid;

@@ -1,8 +1,8 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-import Page from "../ui/Layout/Page";
-import Box from "../ui/Layout/Box";
+import Page from '../ui/Layout/Page';
+import Box from '../ui/Layout/Box';
 
 const OverviewSkeleton = (
   <Page backgroundImage=''>

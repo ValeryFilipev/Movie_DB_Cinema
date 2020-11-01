@@ -17,19 +17,14 @@ export enum movieDetailsActionTypes {
 type FetchSuccessPayload = Required<Omit<MovieDetailsState, 'fetchingMovie'>>;
 
 export const movieDetailsActions = {
-  fetchMovieDetailsRequest: () =>
-    action(movieDetailsActionTypes.FETCH_MOVIE_DETAILS_REQUEST),
+  fetchMovieDetailsRequest: () => action(movieDetailsActionTypes.FETCH_MOVIE_DETAILS_REQUEST),
   fetchMovieDetailsSuccess: (payload: FetchSuccessPayload) =>
     action(movieDetailsActionTypes.FETCH_MOVIE_DETAILS_SUCCESS, payload),
-  loginFail: (error: string) =>
-    action(movieDetailsActionTypes.FETCH_MOVIE_DETAILS_FAIL, error),
+  loginFail: (error: string) => action(movieDetailsActionTypes.FETCH_MOVIE_DETAILS_FAIL, error),
   reset: () => action(movieDetailsActionTypes.RESET)
 };
 
-export const fetchMovieDetails = (id: number): ThunkResult<void> => async (
-  dispatch,
-  getState
-) => {
+export const fetchMovieDetails = (id: number): ThunkResult<void> => async (dispatch, getState) => {
   try {
     const state = getState();
     const movieId = getMovieId(state);

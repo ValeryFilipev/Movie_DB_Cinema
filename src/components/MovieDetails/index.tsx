@@ -31,9 +31,7 @@ const MovieDetails: React.FunctionComponent<MovieDetailsProps &
   }
 
   return (
-    <Page
-      backgroundImage={`${MOVIE_DB_IMAGE_URL.large}${movieInfo.backdropPath}`}
-    >
+    <Page backgroundImage={`${MOVIE_DB_IMAGE_URL.large}${movieInfo.backdropPath}`}>
       <MovieOverview
         movieInfo={movieInfo}
         isInWatchList={isInWatchList}
@@ -42,13 +40,7 @@ const MovieDetails: React.FunctionComponent<MovieDetailsProps &
       />
       {actors && <Actors actors={actors} />}
       {images && images.length && (
-        <Box
-          bg='rgba(0, 0, 0, 0.5)'
-          mt={7}
-          px={{ _: 0, sm: 2, md: 5 }}
-          py={4}
-          data-cy='movieGallery'
-        >
+        <Box bg='rgba(0, 0, 0, 0.5)' mt={7} px={{ _: 0, sm: 2, md: 5 }} py={4}>
           <H2 color='grey.100'>Gallery</H2>
           <ImageGallery
             items={images.map((img) => ({

@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-import {
-  getBreakpoint,
-  getFontSize,
-  getSpace
-} from '../../../../helpers/theme';
+import { getBreakpoint, getFontSize, getSpace } from '../../helpers/theme';
 
 const StyledAutosuggest = styled.div`
   position: relative;
