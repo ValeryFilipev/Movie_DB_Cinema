@@ -26,12 +26,7 @@ const mapDispatchToProps = (
   }
 });
 
-export default connect<
-  MovieFilterStateProps,
-  MovieFilterDispatchProps,
-  {},
-  RootState
->(
+export default connect<MovieFilterStateProps, MovieFilterDispatchProps, {}, RootState>(
   mapStateToProps,
   mapDispatchToProps
 )(MovieFilter);

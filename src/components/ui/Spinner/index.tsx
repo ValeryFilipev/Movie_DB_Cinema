@@ -19,10 +19,7 @@ const RingAnimation = keyframes`
 `;
 
 const getSpinnerColor = (props: StyledProps<SpinnerProps>) => {
-  return (
-    (props.color && getColor(props.color)(props)) ||
-    getColor('common.white')(props)
-  );
+  return (props.color && getColor(props.color)(props)) || getColor('common.white')(props);
 };
 
 const SpinnerContainer = styled.div<SpinnerProps>`
@@ -52,11 +49,7 @@ const SpinnerContainer = styled.div<SpinnerProps>`
   }
 `;
 
-const Spinner: React.FunctionComponent<SpinnerProps> = ({
-  size,
-  color,
-  thickness
-}) => (
+const Spinner: React.FunctionComponent<SpinnerProps> = ({ size, color, thickness }) => (
   <SpinnerContainer size={size} color={color} thickness={thickness}>
     <div />
     <div />

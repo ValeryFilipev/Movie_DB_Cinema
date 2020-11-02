@@ -6,9 +6,7 @@ import { getFontSize, getSpace } from '../../../helpers/theme';
 import { BaseStyle } from './Text';
 import { CommonProps } from './types';
 
-type HeadingProps = StyledProps<
-  CommonProps & React.HTMLAttributes<HTMLHeadingElement>
->;
+type HeadingProps = StyledProps<CommonProps & React.HTMLAttributes<HTMLHeadingElement>>;
 
 const commonStyle = css`
   ${color};

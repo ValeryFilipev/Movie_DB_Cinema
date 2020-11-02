@@ -18,10 +18,7 @@ interface PageProps {
   backgroundImage?: string;
 }
 
-const Page: React.FunctionComponent<PageProps> = ({
-  backgroundImage,
-  children
-}) => (
+const Page: React.FunctionComponent<PageProps> = ({ backgroundImage, children }) => (
   <Box px={{ _: 2, sm: 3, md: 5 }} py={7} maxWidth={1140} margin='auto'>
     <GradientOverlay />
     {backgroundImage && <PageBackgroundImage src={backgroundImage} />}

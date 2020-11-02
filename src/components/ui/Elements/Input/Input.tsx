@@ -1,19 +1,10 @@
 import React from 'react';
-import styled, { StyledProps } from 'styled-components';
-import { space, layout, SpaceProps, LayoutProps } from 'styled-system';
+import { SpaceProps, LayoutProps } from 'styled-system';
 
 import Box from '../../Layout/Box';
 import { Text, TextType } from '../../Typography/Text';
-import { getColor, getFontSize, getSpace } from '../../../../helpers/theme';
-
-const Label = styled(Text)`
-  margin-bottom: 0;
-  margin-right: ${getSpace(2)};
-  padding: ${getSpace(2)} 0;
-  line-height: 1;
-  text-transform: capitalize;
-  font-weight: 500;
-`;
+import Label from '../../../../styled/Label';
+import StyledInput from '../../../../styled/StyledInput';
 
 interface CustomInputProps {
   noBorder?: boolean;
@@ -28,34 +19,6 @@ export type InputProps = CustomInputProps &
   React.InputHTMLAttributes<HTMLInputElement> &
   SpaceProps &
   LayoutProps;
-
-const StyledInput = styled.input<StyledProps<InputProps>>`
-  background: white;
-  border: ${(props) => (props.noBorder ? 'none' : '1px solid')};
-  border-color: ${(props) =>
-    props.error
-      ? getColor('error')(props)
-      : `${getColor('copyTwo')(props)}51`}; // 0.2 opacity
-
-  border-radius: 4px;
-  color: ${getColor('copyOne')};
-  font-size: ${getFontSize(2)};
-  outline: none;
-  padding: ${getSpace(2)} ${getSpace(1)};
-  &:focus {
-    border-color: ${getColor('primary')};
-  }
-
-  &:disabled {
-    background: ${getColor('disabled')};
-  }
-
-  &::placeholder {
-    font-size: ${getFontSize(1)};
-  }
-  ${space};
-  ${layout};
-`;
 
 export const Input: React.FunctionComponent<InputProps> = (props) => {
   const { label, labelColor, unit, unitColor, error, ...rest } = props;
