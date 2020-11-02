@@ -1,7 +1,8 @@
 import React from 'react';
 
 import Page from '../ui/Layout/Page';
-import { Grid, GridItem } from '../Grid';
+import Grid from '../../styled/Grid';
+import GridItem from '../../styled/Grid/GridItem';
 import { WatchListProps } from '../Movies/types';
 import WatchListCard from '../Cards/WatchListCard';
 

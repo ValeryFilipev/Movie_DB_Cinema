@@ -1,38 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import Box from '../ui/Layout/Box';
-import { getColor, getFontSize } from '../../helpers/theme';
-
-const Svg = styled.svg`
-  display: block;
-  position: relative;
-`;
-
-const CircleBackground = styled.path`
-  fill: none;
-  stroke: #fff;
-  stroke-width: 2.8;
-`;
-
-const Circle = styled.path<{ rating: number }>`
-  stroke: ${getColor('primary.main')};
-  fill: none;
-  stroke-width: 3.8;
-  stroke-linecap: round;
-  stroke-dasharray: ${(props) => props.rating} 100;
-`;
-
-const RatingText = styled.p`
-  font-size: ${getFontSize(1)};
-  color: ${getColor('common.white')};
-  line-height: 1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  margin: 0;
-`;
+import Svg from '../../styled/RatingBar/Svg';
+import CircleBackground from '../../styled/RatingBar/CircleBackground';
+import Circle from '../../styled/RatingBar/Circle';
+import RatingText from '../../styled/RatingBar/RatingText';
 
 const RatingBar: React.FunctionComponent<{ rating: number }> = ({ rating }) => {
   if (rating <= 0 || rating > 10) {

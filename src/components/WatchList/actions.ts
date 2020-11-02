@@ -12,10 +12,7 @@ import { getWatchList } from '../Movies/selectors';
 import { WatchListItem } from '../Movies/types';
 import createErrorNotification from '../../utils/createErrorNotification';
 
-export const addToWatchList = (): ThunkResult<void> => async (
-  dispatch,
-  getState
-) => {
+export const addToWatchList = (): ThunkResult<void> => async (dispatch, getState) => {
   try {
     const state = getState();
     const movieDetails = getMovieInfo(state);
@@ -38,9 +35,7 @@ export const addToWatchList = (): ThunkResult<void> => async (
 
     dispatch(authenticationActions.setWatchList(data.watchList));
   } catch (e) {
-    store.addNotification(
-      createErrorNotification('Fail', "Couldn't add to watchlist")
-    );
+    store.addNotification(createErrorNotification('Fail', "Couldn't add to watchlist"));
   }
 };
 
@@ -62,8 +57,6 @@ export const removeFromWatchList = (
     }>;
     dispatch(authenticationActions.setWatchList(data.watchList));
   } catch (e) {
-    store.addNotification(
-      createErrorNotification('Fail', "Couldn't remove from watchlist")
-    );
+    store.addNotification(createErrorNotification('Fail', "Couldn't remove from watchlist"));
   }
 };

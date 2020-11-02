@@ -13,7 +13,7 @@ import { searchMovies } from '../../../api/movies';
 import { Movie } from '../../Movies/types';
 import '../../../styles/autosuggest.css';
 import renderSuggestionWithGenres from './renderSuggestion';
-import StyledAutosuggest from './StyledAutosuggest';
+import StyledAutosuggest from '../../../styled/StyledAutosuggest';
 import { SearchBoxProps } from '../types';
 
 interface State {
@@ -44,10 +44,7 @@ class SearchBox extends React.PureComponent<SearchBoxProps, State> {
     this.setState({ suggestions: [] });
   };
 
-  onChange = (
-    event: React.FormEvent<HTMLInputElement>,
-    params: ChangeEvent
-  ): void => {
+  onChange = (event: React.FormEvent<HTMLInputElement>, params: ChangeEvent): void => {
     this.setState({ value: params.newValue });
   };
 
@@ -57,15 +54,8 @@ class SearchBox extends React.PureComponent<SearchBoxProps, State> {
     onChange: this.onChange
   });
 
-  renderSuggestion: RenderSuggestion<Movie> = (
-    suggestion,
-    onSuggestionSelected
-  ) =>
-    renderSuggestionWithGenres(
-      suggestion,
-      onSuggestionSelected,
-      this.props.genres
-    );
+  renderSuggestion: RenderSuggestion<Movie> = (suggestion, onSuggestionSelected) =>
+    renderSuggestionWithGenres(suggestion, onSuggestionSelected, this.props.genres);
 
   render() {
     return (

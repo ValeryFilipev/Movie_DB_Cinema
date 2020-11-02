@@ -35,10 +35,7 @@ interface AppRouterProps {
   checkUser(): void;
 }
 
-const AppRouter: React.FC<AppRouterProps> = ({
-  isAuthenticated,
-  checkUser
-}) => {
+const AppRouter: React.FC<AppRouterProps> = ({ isAuthenticated, checkUser }) => {
   useEffect(() => {
     checkUser();
   }, []);
@@ -47,11 +44,7 @@ const AppRouter: React.FC<AppRouterProps> = ({
     <Switch>
       <Route exact path='/' component={HomePage} />
       <Route path='/movie/:id' component={MovieDetails} />
-      <PrivateRoute
-        component={WatchList}
-        isAllowed={isAuthenticated}
-        path='/watch-list'
-      />
+      <PrivateRoute component={WatchList} isAllowed={isAuthenticated} path='/watch-list' />
       <PrivateRoute
         component={AuthenticationPage}
         isAllowed={!isAuthenticated}
@@ -67,8 +60,7 @@ const mapStateToProps = (state: RootState) => ({
   isAuthenticated: !!getUserId(state)
 });
 
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<RootState, undefined, RootAction>
-) => bindActionCreators({ checkUser }, dispatch);
+const mapDispatchToProps = (dispatch: ThunkDispatch<RootState, undefined, RootAction>) =>
+  bindActionCreators({ checkUser }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);

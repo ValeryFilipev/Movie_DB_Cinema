@@ -1,4 +1,4 @@
-import { RootAction } from "../../store/rootAction";
+import { RootAction } from '../../store/rootAction';
 import { moviesActionTypes } from './actions';
 import { MoviesState } from './types';
 
@@ -22,7 +22,6 @@ export default function(state: MoviesState = initialState, action: RootAction): 
         fetchingMovies: true
       };
     case moviesActionTypes.FETCH_MOVIES_SUCCESS:
-      console.log(action.payload.results);
       return {
         ...state,
         fetchingMovies: false,

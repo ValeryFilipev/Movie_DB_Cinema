@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Grid, GridItem } from '../Grid';
+import Grid from '../../styled/Grid';
+import GridItem from '../../styled/Grid/GridItem';
 import { MoviesProps } from './types';
 import Pagination from '../Pagination/Pagination';
 import MovieListCard from '../Cards/MovieListCard';
@@ -13,7 +14,7 @@ const Movies: React.FunctionComponent<MoviesProps> = (props) => {
 
   return (
     <>
-      <Grid mb={7} data-cy='moviesGrid'>
+      <Grid mb={7}>
         {props.movies.map((movie) => (
           <GridItem key={movie.id}>
             <MovieListCard movie={movie} genres={props.genres} />

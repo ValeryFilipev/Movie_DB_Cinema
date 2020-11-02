@@ -5,11 +5,7 @@ interface Props {
   imgSrc?: string;
 }
 
-const LazyLoadImage: React.FunctionComponent<Props> = ({
-  placeholder,
-  imgSrc,
-  children
-}) => {
+const LazyLoadImage: React.FunctionComponent<Props> = ({ placeholder, imgSrc, children }) => {
   const [loaded, setLoaded] = useState(false);
 
   const onLoad = () => {
@@ -21,11 +17,7 @@ const LazyLoadImage: React.FunctionComponent<Props> = ({
   return (
     <>
       {!loaded && placeholder}
-      <img
-        src={imgSrc}
-        style={{ display: loaded ? '' : 'none' }}
-        onLoad={onLoad}
-      />
+      <img src={imgSrc} style={{ display: loaded ? '' : 'none' }} onLoad={onLoad} alt='Lazy' />
     </>
   );
 };

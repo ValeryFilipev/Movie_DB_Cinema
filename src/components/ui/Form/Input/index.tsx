@@ -5,13 +5,9 @@ import { FieldProps } from 'formik';
 import Box from '../../Layout/Box';
 import { Input, InputProps } from '../../Elements/Input/Input';
 
-const FormikInput: React.FunctionComponent<FieldProps<string | number> &
-  InputProps> = (props) => {
+const FormikInput: React.FunctionComponent<FieldProps<string | number> & InputProps> = (props) => {
   const { field, form, ...inputProps } = props;
-  const inputPropsToPassDown = omit(
-    ['name', 'value', 'onChange', 'onBlur', 'error'],
-    inputProps
-  );
+  const inputPropsToPassDown = omit(['name', 'value', 'onChange', 'onBlur', 'error'], inputProps);
 
   const touched = form.touched[field.name];
   const errorCopy = form.errors[field.name];

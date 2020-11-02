@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { getShadow, getSpace } from "../../../../helpers/theme";
+import { getShadow, getSpace } from '../../../../helpers/theme';
 
 export const StyledForm = styled.form`
   display: flex;
