@@ -38,7 +38,7 @@ interface AppRouterProps {
 const AppRouter: React.FC<AppRouterProps> = ({ isAuthenticated, checkUser }) => {
   useEffect(() => {
     checkUser();
-  }, []);
+  }, [checkUser]);
 
   return (
     <Switch>

@@ -26,7 +26,7 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({ open, setOpen }) => {
         setOpen(false);
       }
     });
-  }, []);
+  }, [setOpen]);
 
   useOnClickOutside(node, () => setOpen(false));
 

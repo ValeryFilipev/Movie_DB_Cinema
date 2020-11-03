@@ -47,6 +47,7 @@ const DetailsPanel: React.FunctionComponent<Props> = ({ movieInfo }) => (
         Budget:&nbsp;&nbsp;
         <FormattedNumber
           value={movieInfo.budget}
+          // eslint-disable-next-line
           style='currency'
           currency='USD'
           maximumFractionDigits={2}

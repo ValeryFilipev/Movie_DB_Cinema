@@ -8,6 +8,7 @@ import MovieFilter from '../../containers/MovieFilter';
 const Home: React.FunctionComponent<HomeProps> = (props) => {
   useEffect(() => {
     props.fetchMovies();
+    // eslint-disable-next-line
   }, []);
 
   return (
