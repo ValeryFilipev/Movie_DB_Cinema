@@ -23,7 +23,7 @@ const MovieDetails: React.FunctionComponent<MovieDetailsProps &
 }) => {
   useEffect(() => {
     fetchMovieDetails(parseInt(match.params.id));
-  }, [match.params.id]);
+  }, [match.params.id, fetchMovieDetails]);
 
   const { movieInfo, actors, images, fetchingMovie } = movieDetails;
   if (!movieInfo || fetchingMovie) {
