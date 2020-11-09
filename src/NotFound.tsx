@@ -1,33 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { Text } from './components/ui/Typography/Text';
 import Button from './components/ui/Elements/Button/Buttons';
 import PageBackgroundImage from './styled/PageBackgroundImage';
 import Box from './components/ui/Layout/Box';
-
-const NotFoundContent = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  & > * {
-    z-index: 2;
-  }
-`;
-
-const NotFoundFade = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1;
-`;
+import NotFoundContent from './styled/NotFound/NotFoundContent';
+import NotFoundFade from './styled/NotFound/NotFoundFade';
 
 const NotFound: React.FunctionComponent = () => (
   <Box position='relative' height='100%'>

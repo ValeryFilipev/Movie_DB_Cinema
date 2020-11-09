@@ -10,6 +10,7 @@ import Button from '../../ui/Elements/Button/Buttons';
 import OverviewGrid from '../../../styled/MovieOverview/OverviewGrid';
 import BackdropImage from '../../../styled/MovieOverview/BackdropImage';
 import DetailsPanel from './DetailsPanel';
+import ContainerH1 from '../../../styled/MovieOverview/ContainerH1';
 
 interface Props {
   movieInfo: MovieInfo;
@@ -27,7 +28,9 @@ const MovieOverview: React.FunctionComponent<Props> = ({
   <OverviewGrid>
     <BackdropImage src={`${MOVIE_DB_IMAGE_URL.medium}${movieInfo.posterPath}`} />
     <Box bg='rgba(0, 0, 0, 0.5)' gridArea='info' px={4} py={3} position='relative'>
-      <H1 color='brandYellow'>{movieInfo.title}</H1>
+      <ContainerH1>
+        <H1 color='brandYellow'>{movieInfo.title}</H1>
+      </ContainerH1>
       <H3 color='common.white'>{movieInfo.tagline}</H3>
       {isInWatchList ? (
         <Button
