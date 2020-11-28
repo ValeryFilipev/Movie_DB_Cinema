@@ -7,11 +7,13 @@ import 'react-image-gallery/styles/scss/image-gallery.scss';
 import { MOVIE_DB_IMAGE_URL } from '../../api/movies';
 import Box from '../ui/Layout/Box';
 import Page from '../ui/Layout/Page';
-import { H2 } from '../ui/Typography/Heading';
+import { H2, H3 } from '../ui/Typography/Heading';
 import { MovieDetailsProps } from './types';
 import Actors from '../Actors';
 import MovieOverview from './MovieOverview';
 import OverviewSkeleton from '../Skeleton/OverviewSkeleton';
+import PlayerContainer from '../../styled/MovieDetails/PlayerContainer';
+import PlayerItem from '../../styled/MovieDetails/PlayerItem';
 
 const MovieDetails: React.FunctionComponent<MovieDetailsProps &
   RouteComponentProps<{ id: string }>> = ({
@@ -33,7 +35,6 @@ const MovieDetails: React.FunctionComponent<MovieDetailsProps &
 
   return (
     <Page backgroundImage={`${MOVIE_DB_IMAGE_URL.large}${movieInfo.backdropPath}`}>
-      {console.log(trailers, 'trailers')}
       <MovieOverview
         movieInfo={movieInfo}
         isInWatchList={isInWatchList}
@@ -55,27 +56,14 @@ const MovieDetails: React.FunctionComponent<MovieDetailsProps &
       {
         <Box bg='rgba(0, 0, 0, 0.5)' mt={7} px={{ _: 0, sm: 2, md: 5 }} py={4}>
           <H2 color='grey.100'>Trailers</H2>
-          {/*{trailers?.map((item) => (*/}
-          {/*  <ReactPlayer*/}
-          {/*    key={item.id}*/}
-          {/*    url={`https://www.youtube.com/watch?v=${item.key}`}*/}
-          {/*    controls*/}
-          {/*  />*/}
-          {/*))}*/}
-          <div style={{ overflow: 'auto', whiteSpace: 'nowrap' }}>
-            <div style={{ display: 'inline-block', padding: '1rem' }}>
-              <ReactPlayer url={`https://youtu.be/oBHGxGPTsAI`} controls />
-            </div>
-            <div style={{ display: 'inline-block', padding: '1rem' }}>
-              <ReactPlayer url={`https://youtu.be/oBHGxGPTsAI`} controls />
-            </div>
-            <div style={{ display: 'inline-block', padding: '1rem' }}>
-              <ReactPlayer url={`https://youtu.be/oBHGxGPTsAI`} controls />
-            </div>
-            <div style={{ display: 'inline-block', padding: '1rem' }}>
-              <ReactPlayer url={`https://youtu.be/oBHGxGPTsAI`} controls />
-            </div>
-          </div>
+          <PlayerContainer>
+            {window.innerWidth < 769 && <H3 color='grey.100'>Rotate device for watching</H3>}
+            {trailers?.map((item) => (
+              <PlayerItem key={item.id}>
+                <ReactPlayer url={`https://www.youtube.com/watch?v=${item.key}`} controls />
+              </PlayerItem>
+            ))}
+          </PlayerContainer>
         </Box>
       }
     </Page>

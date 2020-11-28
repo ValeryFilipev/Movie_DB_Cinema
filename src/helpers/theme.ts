@@ -6,8 +6,7 @@ const convertShadowToLight = (shadow: string | undefined) =>
 
 export const getColor = (colorName: string) => (
   props: StyledProps<{ theme: DefaultTheme }>
-): string | undefined =>
-  path(['theme', 'colors', ...colorName.split('.')], props);
+): string | undefined => path(['theme', 'colors', ...colorName.split('.')], props);
 
 export const getFontSize = (fontSize: number) => (
   props: StyledProps<{ theme: DefaultTheme }>
