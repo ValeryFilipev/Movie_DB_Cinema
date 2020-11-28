@@ -31,11 +31,21 @@ export interface Actor {
   profilePath: string;
 }
 
+export interface Trailer {
+  id: number;
+  key: string;
+  name: string;
+  site: string;
+  size: number;
+  type: string;
+}
+
 export interface MovieDetailsState {
   fetchingMovie: boolean;
   movieInfo?: MovieInfo;
   actors?: Actor[];
   images?: string[];
+  trailers?: Trailer[];
 }
 
 export interface MovieDetailsDispatchProps {

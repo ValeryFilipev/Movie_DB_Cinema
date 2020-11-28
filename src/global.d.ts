@@ -60,6 +60,8 @@ declare module 'react-paginate' {
 }
 
 declare module 'react-intl-formatted-duration';
+declare module 'react-player';
+declare module 'react-player/youtube';
 declare module 'react-notifications-component' {
   import React from 'react';
   type Store = {
