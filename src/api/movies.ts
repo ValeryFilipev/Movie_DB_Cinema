@@ -1,6 +1,6 @@
 import { axiosMovies as axios } from '../utils/axios';
 
-import { Actor, MovieInfo } from '../components/MovieDetails/types';
+import { Actor, MovieInfo, Trailer } from '../components/MovieDetails/types';
 import {
   FetchGenresSuccessPayload,
   FetchMoviesPayload,
@@ -24,8 +24,10 @@ export const getMovies = ({ filter = 'popular', page }: FetchMoviesPayload) => {
   });
 };
 
-export const getGenres = () =>
-  axios.get<FetchGenresSuccessPayload>('/genre/movie/list');
+export const getGenres = () => axios.get<FetchGenresSuccessPayload>('/genre/movie/list');
+
+export const getTrailers = (id: number) =>
+  axios.get<{ id: number; results: Trailer[] }>(`/movie/${id}/videos`);
 
 export const getMovie = (id: number) => axios.get<MovieInfo>(`/movie/${id}`);
 
@@ -33,12 +35,9 @@ export const getCredits = (id: number) =>
   axios.get<{ id: number; cast: Actor[] }>(`/movie/${id}/credits`);
 
 export const getImages = (id: number) =>
-  axios.get<{ id: number; backdrops: { filePath: string }[] }>(
-    `/movie/${id}/images`,
-    {
-      params: { language: 'null' }
-    }
-  );
+  axios.get<{ id: number; backdrops: { filePath: string }[] }>(`/movie/${id}/images`, {
+    params: { language: 'null' }
+  });
 
 export const searchMovies = (query: string) => {
   return axios.get<FetchMoviesSuccessPayload>(`/search/movie`, {

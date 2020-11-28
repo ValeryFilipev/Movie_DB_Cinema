@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import ImageGallery from 'react-image-gallery';
+import ReactPlayer from 'react-player/youtube';
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 import { MOVIE_DB_IMAGE_URL } from '../../api/movies';
@@ -25,13 +26,14 @@ const MovieDetails: React.FunctionComponent<MovieDetailsProps &
     fetchMovieDetails(parseInt(match.params.id));
   }, [match.params.id, fetchMovieDetails]);
 
-  const { movieInfo, actors, images, fetchingMovie } = movieDetails;
+  const { movieInfo, actors, images, fetchingMovie, trailers } = movieDetails;
   if (!movieInfo || fetchingMovie) {
     return OverviewSkeleton;
   }
 
   return (
     <Page backgroundImage={`${MOVIE_DB_IMAGE_URL.large}${movieInfo.backdropPath}`}>
+      {console.log(trailers, 'trailers')}
       <MovieOverview
         movieInfo={movieInfo}
         isInWatchList={isInWatchList}
@@ -50,6 +52,32 @@ const MovieDetails: React.FunctionComponent<MovieDetailsProps &
           />
         </Box>
       )}
+      {
+        <Box bg='rgba(0, 0, 0, 0.5)' mt={7} px={{ _: 0, sm: 2, md: 5 }} py={4}>
+          <H2 color='grey.100'>Trailers</H2>
+          {/*{trailers?.map((item) => (*/}
+          {/*  <ReactPlayer*/}
+          {/*    key={item.id}*/}
+          {/*    url={`https://www.youtube.com/watch?v=${item.key}`}*/}
+          {/*    controls*/}
+          {/*  />*/}
+          {/*))}*/}
+          <div style={{ overflow: 'auto', whiteSpace: 'nowrap' }}>
+            <div style={{ display: 'inline-block', padding: '1rem' }}>
+              <ReactPlayer url={`https://youtu.be/oBHGxGPTsAI`} controls />
+            </div>
+            <div style={{ display: 'inline-block', padding: '1rem' }}>
+              <ReactPlayer url={`https://youtu.be/oBHGxGPTsAI`} controls />
+            </div>
+            <div style={{ display: 'inline-block', padding: '1rem' }}>
+              <ReactPlayer url={`https://youtu.be/oBHGxGPTsAI`} controls />
+            </div>
+            <div style={{ display: 'inline-block', padding: '1rem' }}>
+              <ReactPlayer url={`https://youtu.be/oBHGxGPTsAI`} controls />
+            </div>
+          </div>
+        </Box>
+      }
     </Page>
   );
 };

@@ -2,10 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { RootState } from 'StoreTypes';
 
-import {
-  addToWatchList,
-  removeFromWatchList
-} from '../components/WatchList/actions';
+import { addToWatchList, removeFromWatchList } from '../components/WatchList/actions';
 import { fetchMovieDetails } from '../components/MovieDetails/actions';
 import MovieDetails from '../components/MovieDetails';
 import { getIsInWatchList, getMovieDetails } from '../components/MovieDetails/selectors';
@@ -22,17 +19,9 @@ const mapStateToProps = (state: RootState): MovieDetailsStateProps => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): MovieDetailsDispatchProps =>
-  bindActionCreators(
-    { addToWatchList, fetchMovieDetails, removeFromWatchList },
-    dispatch
-  );
+  bindActionCreators({ addToWatchList, fetchMovieDetails, removeFromWatchList }, dispatch);
 
-export default connect<
-  MovieDetailsStateProps,
-  MovieDetailsDispatchProps,
-  {},
-  RootState
->(
+export default connect<MovieDetailsStateProps, MovieDetailsDispatchProps, {}, RootState>(
   mapStateToProps,
   mapDispatchToProps
 )(MovieDetails);
