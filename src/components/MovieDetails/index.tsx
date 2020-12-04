@@ -57,12 +57,20 @@ const MovieDetails: React.FunctionComponent<MovieDetailsProps &
         <Box bg='rgba(0, 0, 0, 0.5)' mt={7} px={{ _: 0, sm: 2, md: 5 }} py={4}>
           <H2 color='grey.100'>Trailers</H2>
           <PlayerContainer>
-            {window.innerWidth < 769 && <H3 color='grey.100'>Rotate device for watching</H3>}
+            {window.innerWidth < 769 && trailers?.length !== 0 && (
+              <H3 color='grey.100'>Rotate device for watching</H3>
+            )}
             {trailers?.map((item) => (
               <PlayerItem key={item.id}>
-                <ReactPlayer url={`https://www.youtube.com/watch?v=${item.key}`} controls />
+                <ReactPlayer
+                  url={`https://www.youtube.com/watch?v=${item.key}`}
+                  controls
+                />
               </PlayerItem>
             ))}
+            {trailers?.length === 0 && (
+              <H3 color='grey.100'>No trailers yet for this movie.</H3>
+            )}
           </PlayerContainer>
         </Box>
       }
