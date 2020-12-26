@@ -5,10 +5,11 @@ import {
 } from '../components/Authentication/actions';
 import { User } from '../components/Authentication/types';
 import { WatchListItem } from '../components/Movies/types';
-import { axiosUser as axios } from '../utils/axios';
+import { axiosUser as axios } from './axios';
+import { nativeApi } from './axios';
 
 export const apiLogin = (payload: LoginPayload) =>
-  axios.post<AuthSuccessPayload>('/auth/login', payload);
+  nativeApi.post<AuthSuccessPayload>('/users/login', payload);
 
 export const apiSignup = (payload: SignupPayload) =>
   axios.post<AuthSuccessPayload>('/auth/signup', payload);

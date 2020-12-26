@@ -3,7 +3,7 @@ import { action } from 'typesafe-actions';
 import { ThunkResult } from 'StoreTypes';
 
 import { getCredits, getImages, getMovie, getTrailers } from '../../api/movies';
-import { axiosUser } from '../../utils/axios';
+import { axiosUser } from '../../api/axios';
 import { getMovieId } from './selectors';
 import { MovieDetailsState } from './types';
 

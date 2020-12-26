@@ -15,6 +15,14 @@ export const axiosUser = axios.create({
   withCredentials: true
 });
 
+export const nativeApi = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+  headers: {
+    Accept: "application/json",
+    "Content-type": "application/json"
+  }
+});
+
 if (process.env.NODE_ENV !== 'test') {
   axiosMovies.interceptors.response.use(casing.camelize);
 }

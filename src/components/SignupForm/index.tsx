@@ -11,13 +11,13 @@ import { Text, TextType } from '../ui/Typography/Text';
 import Box from '../ui/Layout/Box';
 
 const initialValues: SignupFormValues = {
-  username: '',
+  email: '',
   password: '',
   confirmPassword: ''
 };
 
 const signupSchema = yup.object().shape<SignupFormValues>({
-  username: yup
+  email: yup
     .string()
     .min(3, 'Too short')
     .required('Required'),
@@ -39,7 +39,7 @@ const SignupForm: React.FunctionComponent<SignupFormProps> = ({ onSubmit, goToLo
     >
       {({ handleSubmit, isSubmitting, isValid }) => (
         <StyledForm onSubmit={handleSubmit}>
-          <Field name='username' label='Username' component={FormikInput} />
+          <Field name='email' label='Email' component={FormikInput} />
           <Field name='password' label='Password' component={FormikInput} type='password' />
           <Field name='confirmPassword' label='Confirm' component={FormikInput} type='password' />
           <Button

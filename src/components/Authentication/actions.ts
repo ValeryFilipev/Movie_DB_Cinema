@@ -19,12 +19,12 @@ export enum authenticationActionTypes {
 }
 
 export interface LoginPayload {
-  username: string;
+  email: string;
   password: string;
 }
 
 export interface SignupPayload {
-  username: string;
+  email: string;
   password: string;
   confirmPassword: string;
 }
@@ -58,14 +58,21 @@ export const login = (
   try {
     dispatch(authenticationActions.loginRequest());
     const { data } = await apiLogin({ ...values });
+    console.log(data, "data");
+    const tokenExpirationTime = new Date(new Date().getTime() + 1000 * 60 * 60);
+    localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          ...data,
+          expiration: tokenExpirationTime.toISOString()
+        })
+    );
     dispatch(authenticationActions.loginSuccess(data));
     dispatch(push('/'));
   } catch (e) {
-    if (e.response.status === 401) {
-      formikHelpers.setFieldError('password', 'Invalid credentials');
-    }
+    formikHelpers.setFieldError('password', e.message);
     formikHelpers.setSubmitting(false);
-    dispatch(authenticationActions.loginFail({ error: e.response.statusText }));
+    dispatch(authenticationActions.loginFail({ error: e.message }));
   }
 };
 
@@ -90,7 +97,7 @@ export const signup = (
   } catch (e) {
     const { status } = e.response;
     if (status === 409) {
-      formikHelpers.setFieldError('username', 'Username already in use');
+      formikHelpers.setFieldError('email', 'Email already in use');
     }
     if (status === 422) {
       formikHelpers.setFieldError('confirmPassword', 'Please check your credentials');

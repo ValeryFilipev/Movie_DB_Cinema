@@ -11,4 +11,4 @@ storiesOf('Input', module)
   .add('Disabled', () => <Input disabled />)
   .add('With label', () => <Input label='age' />)
   .add('With unit', () => <Input unit='kg' value={12} />)
-  .add('With error', () => <Input error='Must be filled' label='Username:' />);
+  .add('With error', () => <Input error='Must be filled' label='Email:' />);
