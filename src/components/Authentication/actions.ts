@@ -2,7 +2,7 @@ import { push } from 'connected-react-router';
 import { FormikHelpers } from 'formik';
 import { action } from 'typesafe-actions';
 import { ThunkResult } from 'StoreTypes';
-
+import { setUserToStorage } from "../../helpers/setUserToStorage";
 import { getUser, apiLogin, apiSignup, apiLogout } from '../../api/user';
 import { WatchListItem } from '../Movies/types';
 import { LoginFormValues, SignupFormValues, User } from './types';
@@ -24,9 +24,9 @@ export interface LoginPayload {
 }
 
 export interface SignupPayload {
+  name: string;
   email: string;
   password: string;
-  confirmPassword: string;
 }
 
 export interface AuthSuccessPayload {
@@ -58,15 +58,7 @@ export const login = (
   try {
     dispatch(authenticationActions.loginRequest());
     const { data } = await apiLogin({ ...values });
-    console.log(data, "data");
-    const tokenExpirationTime = new Date(new Date().getTime() + 1000 * 60 * 60);
-    localStorage.setItem(
-        "userData",
-        JSON.stringify({
-          ...data,
-          expiration: tokenExpirationTime.toISOString()
-        })
-    );
+    setUserToStorage(data);
     dispatch(authenticationActions.loginSuccess(data));
     dispatch(push('/'));
   } catch (e) {
@@ -92,16 +84,11 @@ export const signup = (
   try {
     dispatch(authenticationActions.signupRequest());
     const { data } = await apiSignup({ ...values });
+    setUserToStorage(data);
     dispatch(authenticationActions.signupSuccess(data));
     dispatch(push('/'));
   } catch (e) {
-    const { status } = e.response;
-    if (status === 409) {
-      formikHelpers.setFieldError('email', 'Email already in use');
-    }
-    if (status === 422) {
-      formikHelpers.setFieldError('confirmPassword', 'Please check your credentials');
-    }
+    formikHelpers.setFieldError('password', e.response.statusText);
     formikHelpers.setSubmitting(false);
     dispatch(authenticationActions.loginFail({ error: e.response.statusText }));
   }

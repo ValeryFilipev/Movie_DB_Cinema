@@ -11,12 +11,16 @@ import { Text, TextType } from '../ui/Typography/Text';
 import Box from '../ui/Layout/Box';
 
 const initialValues: SignupFormValues = {
+  name: '',
   email: '',
-  password: '',
-  confirmPassword: ''
+  password: ''
 };
 
 const signupSchema = yup.object().shape<SignupFormValues>({
+  name: yup
+    .string()
+    .min(3, 'Too short')
+    .required('Required'),
   email: yup
     .string()
     .min(3, 'Too short')
@@ -24,11 +28,13 @@ const signupSchema = yup.object().shape<SignupFormValues>({
   password: yup
     .string()
     .min(6, 'Too short')
-    .required('Required'),
-  confirmPassword: yup.string().oneOf([yup.ref('password')], 'Passwords do not match')
+    .required('Required')
 });
 
-const SignupForm: React.FunctionComponent<SignupFormProps> = ({ onSubmit, goToLogin }) => (
+const SignupForm: React.FunctionComponent<SignupFormProps> = ({
+  onSubmit,
+  goToLogin
+}) => (
   <FormContainer>
     <H1>Signup</H1>
     <Formik
@@ -39,9 +45,14 @@ const SignupForm: React.FunctionComponent<SignupFormProps> = ({ onSubmit, goToLo
     >
       {({ handleSubmit, isSubmitting, isValid }) => (
         <StyledForm onSubmit={handleSubmit}>
+          <Field name='name' label='Username' component={FormikInput} />
           <Field name='email' label='Email' component={FormikInput} />
-          <Field name='password' label='Password' component={FormikInput} type='password' />
-          <Field name='confirmPassword' label='Confirm' component={FormikInput} type='password' />
+          <Field
+            name='password'
+            label='Password'
+            component={FormikInput}
+            type='password'
+          />
           <Button
             variant='secondary'
             disabled={isSubmitting || !isValid}

@@ -12,7 +12,7 @@ export const apiLogin = (payload: LoginPayload) =>
   nativeApi.post<AuthSuccessPayload>('/users/login', payload);
 
 export const apiSignup = (payload: SignupPayload) =>
-  axios.post<AuthSuccessPayload>('/auth/signup', payload);
+  nativeApi.post<AuthSuccessPayload>('/users/signup', payload);
 
 export const apiLogout = () => axios.get('/auth/logout');
 
