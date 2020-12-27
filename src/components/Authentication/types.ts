@@ -26,6 +26,7 @@ export interface User {
   userId: string;
   token: string;
   email: string;
+  expiration: string;
   watchList: WatchListItem[];
 }
 

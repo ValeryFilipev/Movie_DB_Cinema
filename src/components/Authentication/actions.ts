@@ -3,7 +3,7 @@ import { FormikHelpers } from 'formik';
 import { action } from 'typesafe-actions';
 import { ThunkResult } from 'StoreTypes';
 import { setUserToStorage } from "../../helpers/setUserToStorage";
-import { getUser, apiLogin, apiSignup, apiLogout } from '../../api/user';
+import { apiLogin, apiSignup } from '../../api/user';
 import { WatchListItem } from '../Movies/types';
 import { LoginFormValues, SignupFormValues, User } from './types';
 
@@ -70,8 +70,27 @@ export const login = (
 
 export const checkUser = (): ThunkResult<void> => async (dispatch, _) => {
   try {
-    const { data } = await getUser();
-    dispatch(authenticationActions.loginSuccess({ user: data }));
+    const storedData = JSON.parse(localStorage.getItem('userData')!);
+
+    if (
+      storedData &&
+      storedData.token &&
+      new Date(storedData.expiration) > new Date()
+    ) {
+      dispatch(authenticationActions.loginSuccess({ user: storedData }));
+    }
+
+    if (
+      storedData &&
+      storedData.token &&
+      new Date(storedData.expiration) < new Date()
+    ) {
+      dispatch(logout());
+    }
+
+    if (!storedData || storedData.token) {
+      logout();
+    }
   } catch (e) {
     console.log(JSON.stringify(e));
   }
@@ -96,7 +115,7 @@ export const signup = (
 
 export const logout = (): ThunkResult<any> => async (dispatch, getState) => {
   try {
-    await apiLogout();
+    localStorage.removeItem("userData");
     dispatch(authenticationActions.clear());
   } catch (e) {
     //
