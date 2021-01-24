@@ -1,4 +1,4 @@
-import { axiosMovies as axios } from '../utils/axios';
+import { axiosMovies as axios } from './axios';
 
 import { Actor, MovieInfo, Trailer } from '../components/MovieDetails/types';
 import {

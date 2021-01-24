@@ -2,8 +2,8 @@ import { push } from 'connected-react-router';
 import { FormikHelpers } from 'formik';
 import { action } from 'typesafe-actions';
 import { ThunkResult } from 'StoreTypes';
-
-import { getUser, apiLogin, apiSignup, apiLogout } from '../../api/user';
+import { setUserToStorage } from "../../helpers/setUserToStorage";
+import { apiLogin, apiSignup } from '../../api/user';
 import { WatchListItem } from '../Movies/types';
 import { LoginFormValues, SignupFormValues, User } from './types';
 
@@ -19,14 +19,14 @@ export enum authenticationActionTypes {
 }
 
 export interface LoginPayload {
-  username: string;
+  email: string;
   password: string;
 }
 
 export interface SignupPayload {
-  username: string;
+  name: string;
+  email: string;
   password: string;
-  confirmPassword: string;
 }
 
 export interface AuthSuccessPayload {
@@ -58,21 +58,39 @@ export const login = (
   try {
     dispatch(authenticationActions.loginRequest());
     const { data } = await apiLogin({ ...values });
+    setUserToStorage(data);
     dispatch(authenticationActions.loginSuccess(data));
     dispatch(push('/'));
   } catch (e) {
-    if (e.response.status === 401) {
-      formikHelpers.setFieldError('password', 'Invalid credentials');
-    }
+    formikHelpers.setFieldError('password', e.message);
     formikHelpers.setSubmitting(false);
-    dispatch(authenticationActions.loginFail({ error: e.response.statusText }));
+    dispatch(authenticationActions.loginFail({ error: e.message }));
   }
 };
 
 export const checkUser = (): ThunkResult<void> => async (dispatch, _) => {
   try {
-    const { data } = await getUser();
-    dispatch(authenticationActions.loginSuccess({ user: data }));
+    const storedData = JSON.parse(localStorage.getItem('userData')!);
+
+    if (
+      storedData &&
+      storedData.token &&
+      new Date(storedData.expiration) > new Date()
+    ) {
+      dispatch(authenticationActions.loginSuccess({ user: storedData }));
+    }
+
+    if (
+      storedData &&
+      storedData.token &&
+      new Date(storedData.expiration) < new Date()
+    ) {
+      dispatch(logout());
+    }
+
+    if (!storedData || storedData.token) {
+      logout();
+    }
   } catch (e) {
     console.log(JSON.stringify(e));
   }
@@ -85,16 +103,11 @@ export const signup = (
   try {
     dispatch(authenticationActions.signupRequest());
     const { data } = await apiSignup({ ...values });
+    setUserToStorage(data);
     dispatch(authenticationActions.signupSuccess(data));
     dispatch(push('/'));
   } catch (e) {
-    const { status } = e.response;
-    if (status === 409) {
-      formikHelpers.setFieldError('username', 'Username already in use');
-    }
-    if (status === 422) {
-      formikHelpers.setFieldError('confirmPassword', 'Please check your credentials');
-    }
+    formikHelpers.setFieldError('password', e.response.statusText);
     formikHelpers.setSubmitting(false);
     dispatch(authenticationActions.loginFail({ error: e.response.statusText }));
   }
@@ -102,7 +115,7 @@ export const signup = (
 
 export const logout = (): ThunkResult<any> => async (dispatch, getState) => {
   try {
-    await apiLogout();
+    localStorage.removeItem("userData");
     dispatch(authenticationActions.clear());
   } catch (e) {
     //

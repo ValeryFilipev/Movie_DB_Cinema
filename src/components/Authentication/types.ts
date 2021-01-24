@@ -2,14 +2,14 @@ import { FormikHelpers } from 'formik';
 import { WatchListItem } from '../Movies/types';
 
 export interface LoginFormValues {
-  username: string;
+  email: string;
   password: string;
 }
 
 export interface SignupFormValues {
-  username: string;
+  name: string;
+  email: string;
   password: string;
-  confirmPassword: string;
 }
 
 export type LoginOnSubmit = (
@@ -23,8 +23,10 @@ export type SignupOnSubmit = (
 ) => void;
 
 export interface User {
-  id: string;
-  username: string;
+  userId: string;
+  token: string;
+  email: string;
+  expiration: string;
   watchList: WatchListItem[];
 }
 

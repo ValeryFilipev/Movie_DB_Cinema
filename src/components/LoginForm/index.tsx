@@ -11,12 +11,12 @@ import { FormContainer, StyledForm } from '../ui/Form/Elements';
 import FormikInput from '../ui/Form/Input';
 
 const initialValues: LoginFormValues = {
-  username: '',
+  email: '',
   password: ''
 };
 
 const loginSchema = yup.object().shape<LoginFormValues>({
-  username: yup
+  email: yup
     .string()
     .min(3, 'Too short')
     .required('Required'),
@@ -40,7 +40,7 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = ({
     >
       {({ handleSubmit, isSubmitting, isValid }) => (
         <StyledForm onSubmit={handleSubmit}>
-          <Field name='username' label='Username' component={FormikInput} />
+          <Field name='email' label='Email' component={FormikInput} />
           <Field name='password' label='Password' component={FormikInput} type='password' />
           <Button
             variant='secondary'
